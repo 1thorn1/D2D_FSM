@@ -16,6 +16,3 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     app.Run();
     app.Uninitialize();
 }
-
-
-// 커밋 확인을 위한 주석 달기

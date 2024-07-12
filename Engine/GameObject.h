@@ -1,6 +1,7 @@
 #pragma once
 #include "AnimationScene.h"
 #include "CameraScene.h"
+#include "FiniteStateMachine.h"
 #include "AABB.h"
 
 class Component;

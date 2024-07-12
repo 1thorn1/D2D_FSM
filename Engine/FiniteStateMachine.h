@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"`
+#include "Component.h"
 
 class FSMState;
 
@@ -12,13 +12,13 @@ public:
 
 protected:
 	FSMState* m_pCurrState = nullptr;	// 현재 상태
-	FSMState* m_PreState = nullptr;		// 이전 상태
+	FSMState* m_pPreState = nullptr;		// 이전 상태
 
 	std::map<std::string, FSMState*> m_pStates; // 생성된 FSMState 저장하기
 
 	void Update();
 	void SetPreState(std::string stateName);
-
+public:
 	template<typename T>
 	void CreateState(const std::string StateName)
 	{

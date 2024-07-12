@@ -1,7 +1,5 @@
 #pragma once
 #include "DemoApp.h"
-#include "../Engine/InputManager.h"
-#include "../Engine/AABB.h"
 
 class Player
 	: public GameObject
@@ -15,4 +13,3 @@ public:
 	virtual void Update();
 	static AnimationScene* GetPlayer() { return m_pPlayer; }
 };
-
