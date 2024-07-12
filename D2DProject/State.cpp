@@ -7,11 +7,11 @@ void IdleState::Enter()
 
 void IdleState::Update()
 {
-	/*InputManager KeyManager;
-	if (KeyManager.IsKeyDown('A'))
+	InputManager KeyManager;
+	if (KeyManager.IsKeyDown('K'))
 	{
 
-	}*/
+	}
 }
 
 void IdleState::Exit()

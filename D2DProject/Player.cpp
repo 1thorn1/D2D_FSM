@@ -1,9 +1,8 @@
 #include "Player.h"
-AnimationScene* Player::m_pPlayer = nullptr;
 
 Player::Player()
 {
-	m_pPlayer = CreateComponent<AnimationScene>();
+	AnimationScene* m_pPlayer = CreateComponent<AnimationScene>();
 	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/run.png", &m_pPlayer->m_pBitmap);
 	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/Run.txt", &m_pPlayer->m_pAnimationAsset);
 	m_pPlayer->SetAnimation(1, 0);
