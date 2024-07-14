@@ -10,6 +10,7 @@
 #include "AABB.h"
 #include "FSMState.h"
 #include "GameObject.h"
+#include "FiniteStateMachine.h"
 
 class GameApp
 {

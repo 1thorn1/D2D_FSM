@@ -8,7 +8,11 @@ class Player
 	AnimationScene* m_pPlayer;
 
 public:
-	Player();
+	Player() {};
+	Player(const std::wstring& animationFilePath);
+	virtual ~Player();
+
+	void SetAnimationFilePath(const std::wstring& animationFilePath);
 	void PlayerMove();
 	virtual void Update();
 };

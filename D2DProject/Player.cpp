@@ -1,37 +1,25 @@
 #include "Player.h"
 
-Player::Player()
+Player::Player(const std::wstring& animationFilePath)
 {
 	AnimationScene* m_pPlayer = CreateComponent<AnimationScene>();
 	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/run.png", &m_pPlayer->m_pBitmap);
-	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/Run.txt", &m_pPlayer->m_pAnimationAsset);
+	ResourceManager::pInstance->CreateAnimationAsset(animationFilePath, &m_pPlayer->m_pAnimationAsset);
 	m_pPlayer->SetAnimation(1, 0);
 	m_pPlayer->m_RelativeLocation = { 200 ,200 };
 	SetRootScene(m_pPlayer);
 }
 
-void Player::PlayerMove() // state
+Player::~Player()
 {
-	if (KeyManager.IsKeyDown('W'))
-	{
-		m_pRootScene->m_RelativeLocation.y -= 1;
-	}
-	if (KeyManager.IsKeyDown('A'))
-	{
-		m_pRootScene->m_RelativeLocation.x -= 1;
-	}
-	if (KeyManager.IsKeyDown('S'))
-	{
-		m_pRootScene->m_RelativeLocation.y += 1;
-	}
-	if (KeyManager.IsKeyDown('D'))
-	{
-		m_pRootScene->m_RelativeLocation.x += 1;
-	}
+}
+
+void Player::SetAnimationFilePath(const std::wstring& animationFilePath)
+{
+	ResourceManager::pInstance->CreateAnimationAsset(animationFilePath, &m_pPlayer->m_pAnimationAsset);
 }
 
 void Player::Update()
 {
 	__super::Update();
-	PlayerMove();
 }

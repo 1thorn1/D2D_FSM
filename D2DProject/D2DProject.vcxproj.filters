@@ -16,6 +16,9 @@
     <Filter Include="소스 파일\GameObject">
       <UniqueIdentifier>{aea02f23-eb6f-414a-8b36-2092ebc983c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\State">
+      <UniqueIdentifier>{aebb3deb-d57f-4c0c-866c-8b6a6183f08a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -34,13 +37,22 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="AttackState.h">
+      <Filter>소스 파일\State</Filter>
+    </ClInclude>
+    <ClInclude Include="DeathState.h">
+      <Filter>소스 파일\State</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleState.h">
+      <Filter>소스 파일\State</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveState.h">
+      <Filter>소스 파일\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -56,8 +68,17 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="State.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="IdleState.cpp">
+      <Filter>소스 파일\State</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackState.cpp">
+      <Filter>소스 파일\State</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveState.cpp">
+      <Filter>소스 파일\State</Filter>
+    </ClCompile>
+    <ClCompile Include="DeathState.cpp">
+      <Filter>소스 파일\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

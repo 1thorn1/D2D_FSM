@@ -17,18 +17,18 @@ FiniteStateMachine::~FiniteStateMachine()
 
 void FiniteStateMachine::Update()
 {
-	if (m_pPreState != m_pCurrState)
+	if (m_pPreState != m_pCurrState) // 이전 상태 -> 현재 상태 다르다면
 	{
-		if (m_pPreState != nullptr)
+		if (m_pPreState != nullptr) // 이전 상태가 존재할 때
 		{
-			m_pPreState->Exit();
+			m_pPreState->Exit(); // Exit 실행 -> 이전 상태를 빠져나옴 
 		}
-		m_pPreState = m_pCurrState;
-		m_pPreState->Enter();
+		m_pPreState = m_pCurrState; // -> 이전 상태에 현재 상태를 넣기
+		m_pPreState->Enter(); // -> 현재 상태를 실행한다
 	}
 	else
 	{
-		m_pPreState->Update();
+		m_pPreState->Update(); // 이전 상태와 현재 상태가 같다면 -> loop 돌리기
 	}
 }
 
