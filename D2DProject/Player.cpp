@@ -1,22 +1,22 @@
 #include "Player.h"
+#include "IdleState.h"
+#include "MoveState.h"
 
-Player::Player(const std::wstring& animationFilePath)
+Player::Player()
 {
 	AnimationScene* m_pPlayer = CreateComponent<AnimationScene>();
-	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/run.png", &m_pPlayer->m_pBitmap);
-	ResourceManager::pInstance->CreateAnimationAsset(animationFilePath, &m_pPlayer->m_pAnimationAsset);
-	m_pPlayer->SetAnimation(1, 0);
+	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/ken.png", &m_pPlayer->m_pBitmap);
 	m_pPlayer->m_RelativeLocation = { 200 ,200 };
 	SetRootScene(m_pPlayer);
+
+	fsm = CreateComponent<FiniteStateMachine>();
+	fsm->CreateState<IdleState>("Idle");
+	fsm->CreateState<MoveState>("Move");
+	fsm->SetCurState("Idle");
 }
 
 Player::~Player()
 {
-}
-
-void Player::SetAnimationFilePath(const std::wstring& animationFilePath)
-{
-	ResourceManager::pInstance->CreateAnimationAsset(animationFilePath, &m_pPlayer->m_pAnimationAsset);
 }
 
 void Player::Update()

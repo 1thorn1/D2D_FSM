@@ -8,7 +8,7 @@ FiniteStateMachine::FiniteStateMachine()
 
 FiniteStateMachine::~FiniteStateMachine()
 {
-	for (std::pair<std::string, FSMState*> state: m_pStates)
+	for (std::pair<std::string, FSMState*> state : m_pStates)
 	{
 		delete state.second;
 	}
@@ -32,7 +32,7 @@ void FiniteStateMachine::Update()
 	}
 }
 
-void FiniteStateMachine::SetPreState(std::string stateName)
+void FiniteStateMachine::SetCurState(std::string stateName)
 {
 	auto it = m_pStates.find(stateName);
 	if (it != m_pStates.end())

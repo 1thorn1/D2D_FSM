@@ -5,14 +5,14 @@ class Player
 	: public GameObject
 {
 	InputManager KeyManager;
-	AnimationScene* m_pPlayer;
 
 public:
-	Player() {};
-	Player(const std::wstring& animationFilePath);
+
+	AnimationScene* m_pPlayer;
+	FiniteStateMachine* fsm;
+
+	Player();
 	virtual ~Player();
 
-	void SetAnimationFilePath(const std::wstring& animationFilePath);
-	void PlayerMove();
 	virtual void Update();
 };

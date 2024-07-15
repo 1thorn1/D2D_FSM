@@ -12,14 +12,14 @@ void DemoApp::Initialize(HINSTANCE hInstance)
 	clone->m_pRootScene = clone->CreateComponent<CameraScene>();
 	tempWorld.mainCamera = clone; // 메인카메라 설정 잊지말기!
 
-	 //백그라운드 생성 -> 함수로 만들겠음
+	//백그라운드 생성 -> 함수로 만들겠음
 	clone = tempWorld.CreateGameObject<GameObject>();
 	AnimationScene* Background = clone->CreateComponent<AnimationScene>();
 	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/midnight.png", &Background->m_pBitmap);
 	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/midnight.txt", &Background->m_pAnimationAsset);
 	Background->SetAnimation(0, 0);
 	clone->m_pRootScene = Background;
-	
+
 	// 적 생성
 	clone = tempWorld.CreateGameObject<Enemy>();
 
@@ -66,11 +66,11 @@ void DemoApp::FixedUpdate()
 
 void DemoApp::Update()
 {
-	CheckKeyInput();  
+	CheckKeyInput();
 	tempWorld.Update();
 }
 
- 
+
 void DemoApp::Render()
 {
 	D2DRender::GetRenderTarget()->BeginDraw();

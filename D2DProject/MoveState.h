@@ -3,6 +3,7 @@
 
 class MoveState : public FSMState
 {
+	InputManager KeyManager;
 public:
 	MoveState(FiniteStateMachine* pOwner, std::string Name)
 		:FSMState(pOwner, Name)

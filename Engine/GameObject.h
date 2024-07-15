@@ -15,8 +15,8 @@ public:
 	virtual ~GameObject();
 
 	std::vector<Component*> m_OwnedComponents;		 // 소유한 컴포넌트들, 여러 개의 컴포넌트를 가질 수 있으니까
-	Scene*					m_pRootScene = nullptr;	 // 하나의 오브젝트의 여러 컴포넌트 중 어떤 컴포넌트의 좌표 등을 따라갈지 결정할 때 필요
-	World*					m_pOwner = nullptr;		 // 이 게임 오브젝트가 속한 월드(scene) 왜 포인터로 나타나져있을까?
+	Scene* m_pRootScene = nullptr;	 // 하나의 오브젝트의 여러 컴포넌트 중 어떤 컴포넌트의 좌표 등을 따라갈지 결정할 때 필요
+	World* m_pOwner = nullptr;		 // 이 게임 오브젝트가 속한 월드(scene) 왜 포인터로 나타나져있을까?
 	AABB					m_BoundBox;
 
 	virtual void Update();
@@ -36,6 +36,21 @@ public:
 		T* pComponent = new T();
 		AddComponent(pComponent); //CreateComponent 하면 -> AddComponent해주기
 		return pComponent;
+	}
+
+	template<typename T>
+	T* GetComponent()
+	{
+		T* temp;
+		for (Component* comp : m_OwnedComponents)
+		{
+			temp = dynamic_cast<T*>(comp);
+			if (temp)
+			{
+				return temp;
+			}
+		}
+		return nullptr;
 	}
 };
 

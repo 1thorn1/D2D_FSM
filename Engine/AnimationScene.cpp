@@ -23,7 +23,7 @@ AnimationScene::~AnimationScene()
 void AnimationScene::LoadAnimationAsset(const std::wstring strFilePath)
 {
 	// ResourceManager를 통하여 AnimationAsset을 로드한다.
-	//ResourceManager::pInstance->CreateAnimationAsset(strFilePath, &m_pAnimationAsset); //-> 없어도 되지 않남
+	ResourceManager::pInstance->CreateAnimationAsset(strFilePath, &m_pAnimationAsset); //-> 없어도 되지 않남
 }
 
 
@@ -31,9 +31,9 @@ void AnimationScene::Update()
 {
 	__super::Update();
 
-	assert(m_pAnimationAsset != nullptr);  // asset이 없으면 debug모드에서 멈춤
-	if (m_pAnimationInfo == nullptr)
-		return;
+	//assert(m_pAnimationAsset != nullptr);  // asset이 없으면 debug모드에서 멈춤
+	if (m_pAnimationAsset == nullptr) return;
+	if (m_pAnimationInfo == nullptr) return;
 
 	const FRAME_INFO& Frame = m_pAnimationInfo->Frames[m_FrameIndexCurr];
 	size_t MaxFrameCount = m_pAnimationInfo->Frames.size();

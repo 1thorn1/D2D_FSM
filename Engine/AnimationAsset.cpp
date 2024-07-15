@@ -12,15 +12,20 @@ bool AnimationAsset::LoadAnimation(std::wstring FilePath)
 		// 배경의 CSV 열기
 		LoadAnimationFromCSV(0, L"CSV/midnight.txt");
 	}
-	if (FilePath == std::wstring(L"CSV/Run.txt"))
+	if (FilePath == std::wstring(L"CSV/KenIdle.txt"))
 	{
 		// 플레이어의 CSV 열기
-		LoadAnimationFromCSV(1, L"CSV/Run.txt");
+		LoadAnimationFromCSV(1, L"CSV/KenIdle.txt");
 	}
 	if (FilePath == std::wstring(L"CSV/KenIdle.txt"))
 	{
 		// 적의 CSV 열기
 		LoadAnimationFromCSV(2, L"CSV/KenIdle.txt");
+	}
+	if (FilePath == std::wstring(L"CSV/KenMove.txt"))
+	{
+		// 적의 CSV 열기
+		LoadAnimationFromCSV(3, L"CSV/KenMove.txt");
 	}
 
 	return true;
