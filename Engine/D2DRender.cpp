@@ -47,7 +47,7 @@ BOOL D2DRender::InitDirect2D(HWND m_hWnd)
 
 	if (SUCCEEDED(hr))
 	{
-		hr = m_pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::White), &m_pBrush);
+		hr = m_pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Green), &m_pBrush);
 	}
 
 	if (SUCCEEDED(hr))

@@ -86,7 +86,7 @@ bool ResourceManager::CreateD2DBitmapFromFile(std::wstring strFilePath, ID2D1Bit
 	if (pFrame)
 		pFrame->Release();
 
-
+	// 실패하면 넣으면 안댐 ㅠ
 	m_BitmapMap[strFilePath] = *bitmap; // 엄 이거 머임
 
 	return true;

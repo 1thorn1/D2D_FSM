@@ -16,8 +16,11 @@
     <Filter Include="소스 파일\GameObject">
       <UniqueIdentifier>{aea02f23-eb6f-414a-8b36-2092ebc983c7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\State">
+    <Filter Include="소스 파일\PlayerState">
       <UniqueIdentifier>{aebb3deb-d57f-4c0c-866c-8b6a6183f08a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\EnemyState">
+      <UniqueIdentifier>{ce48d78f-86a4-4283-b612-288c249c6553}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -43,16 +46,28 @@
       <Filter>소스 파일\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="AttackState.h">
-      <Filter>소스 파일\State</Filter>
+      <Filter>소스 파일\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="DeathState.h">
-      <Filter>소스 파일\State</Filter>
+      <Filter>소스 파일\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="IdleState.h">
-      <Filter>소스 파일\State</Filter>
+      <Filter>소스 파일\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="MoveState.h">
-      <Filter>소스 파일\State</Filter>
+      <Filter>소스 파일\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyState.h">
+      <Filter>소스 파일\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EAttackState.h">
+      <Filter>소스 파일\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EIdleState.h">
+      <Filter>소스 파일\EnemyState</Filter>
+    </ClInclude>
+    <ClInclude Include="EMoveState.h">
+      <Filter>소스 파일\EnemyState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -69,16 +84,28 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="IdleState.cpp">
-      <Filter>소스 파일\State</Filter>
+      <Filter>소스 파일\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="AttackState.cpp">
-      <Filter>소스 파일\State</Filter>
+      <Filter>소스 파일\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="MoveState.cpp">
-      <Filter>소스 파일\State</Filter>
+      <Filter>소스 파일\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="DeathState.cpp">
-      <Filter>소스 파일\State</Filter>
+      <Filter>소스 파일\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyState.cpp">
+      <Filter>소스 파일\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EAttackState.cpp">
+      <Filter>소스 파일\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EIdleState.cpp">
+      <Filter>소스 파일\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="EMoveState.cpp">
+      <Filter>소스 파일\EnemyState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

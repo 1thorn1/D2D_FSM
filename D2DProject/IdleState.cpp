@@ -2,11 +2,11 @@
 
 void IdleState::Enter()
 {
-	AnimationScene* ani;
-	ani = m_pOwner->GetOwner()->GetComponent<AnimationScene>();
-	ani->LoadAnimationAsset(L"CSV/KenIdle.txt");
-	ani->SetAnimation(1, 0);
-	m_pOwner->GetOwner()->GetComponent<AnimationScene>()->m_bMirror = true;
+	AnimationScene* PIdleAni;
+	PIdleAni = m_pOwner->GetOwner()->GetComponent<AnimationScene>();
+	PIdleAni->LoadAnimationAsset(L"CSV/KenIdle.txt");
+	PIdleAni->SetAnimation(1, 0);
+	//m_pOwner->GetOwner()->GetComponent<AnimationScene>()->m_bMirror = true;
 }
 
 void IdleState::Update()

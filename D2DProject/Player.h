@@ -4,15 +4,15 @@
 class Player
 	: public GameObject
 {
-	InputManager KeyManager;
-
 public:
 
-	AnimationScene* m_pPlayer;
+	AnimationScene* PlayerAni;
 	FiniteStateMachine* fsm;
 
 	Player();
 	virtual ~Player();
 
+	virtual void Initialize();
 	virtual void Update();
+	virtual void Render();
 };

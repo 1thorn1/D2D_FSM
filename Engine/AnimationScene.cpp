@@ -64,13 +64,13 @@ void AnimationScene::Update()
 
 	if (m_bMirror) //x 축 스케일은 좌우 반전 , Translation 은 출력할 이미지의 원점 정보
 	{
-		m_ImageTransform = D2D1::Matrix3x2F::Scale(-1.0f, 1.0f, D2D1::Point2F(0, 0)) *
-			D2D1::Matrix3x2F::Translation(Frame.Center.x, Frame.Center.y);
+		m_ImageTransform = D2D1::Matrix3x2F::Scale(-1.0f, 1.0f, D2D1::Point2F(0, 0));
+			//D2D1::Matrix3x2F::Translation(Frame.Center.x, Frame.Center.y);
 	}
 	else
 	{
-		m_ImageTransform = D2D1::Matrix3x2F::Scale(1.0f, 1.0f, D2D1::Point2F(0, 0)) *
-			D2D1::Matrix3x2F::Translation(Frame.Center.x * -1, Frame.Center.y);
+		m_ImageTransform = D2D1::Matrix3x2F::Scale(1.0f, 1.0f, D2D1::Point2F(0, 0));
+			//D2D1::Matrix3x2F::Translation(Frame.Center.x * -1, Frame.Center.y);
 	}
 
   	GetOwner()->m_BoundBox.m_Extend = { m_DstRect.right / 2, m_DstRect.bottom / 2 };

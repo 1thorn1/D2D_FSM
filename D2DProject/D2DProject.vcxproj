@@ -131,7 +131,11 @@
     <ClInclude Include="D2DProject.h" />
     <ClInclude Include="DeathState.h" />
     <ClInclude Include="DemoApp.h" />
+    <ClInclude Include="EAttackState.h" />
+    <ClInclude Include="EIdleState.h" />
+    <ClInclude Include="EMoveState.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyState.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="MoveState.h" />
@@ -143,7 +147,11 @@
     <ClCompile Include="AttackState.cpp" />
     <ClCompile Include="DeathState.cpp" />
     <ClCompile Include="DemoApp.cpp" />
+    <ClCompile Include="EAttackState.cpp" />
+    <ClCompile Include="EIdleState.cpp" />
+    <ClCompile Include="EMoveState.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveState.cpp" />

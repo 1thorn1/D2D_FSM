@@ -4,10 +4,10 @@
 
 Player::Player()
 {
-	AnimationScene* m_pPlayer = CreateComponent<AnimationScene>();
-	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/ken.png", &m_pPlayer->m_pBitmap);
-	m_pPlayer->m_RelativeLocation = { 200 ,200 };
-	SetRootScene(m_pPlayer);
+	PlayerAni = CreateComponent<AnimationScene>();
+	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/ken.png", &PlayerAni->m_pBitmap);
+	PlayerAni->m_RelativeLocation = { 200 ,200 };
+	SetRootScene(PlayerAni);
 
 	fsm = CreateComponent<FiniteStateMachine>();
 	fsm->CreateState<IdleState>("Idle");
@@ -19,7 +19,18 @@ Player::~Player()
 {
 }
 
+void Player::Initialize()
+{
+	// 플레이어의 박스 콜라이더 생성
+}
+
 void Player::Update()
 {
 	__super::Update();
+}
+
+void Player::Render()
+{
+	__super::Render();
+	// 플레이어의 박스 콜라이더 출력
 }

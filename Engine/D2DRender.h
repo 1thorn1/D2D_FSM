@@ -16,11 +16,11 @@ private:
 
 
 	// VRAM에 사용하는 포인터 변수!
-	static IDWriteFactory*		 m_pDWriteFactory;	// TextFormat생성을 위한 팩토리
-	static IDWriteTextFormat*	 m_pDWriteTextFormat; // 기본 텍스트 출력을 위한 Format
+	static IDWriteFactory*		 m_pDWriteFactory;		// TextFormat생성을 위한 팩토리
+	static IDWriteTextFormat*	 m_pDWriteTextFormat;	// 기본 텍스트 출력을 위한 Format
 	static IDXGIFactory4*		 m_pDXGIFactory;		// DXGI팩토리
 	static IDXGIAdapter3*		 m_pDXGIAdapter;		// 비디오카드 정보에 접근 가능한 인터페이스
-	static ID2D1SolidColorBrush* m_pBrush;	// 렌더타겟이 생성하는 리소스 역시 장치의존
+	static ID2D1SolidColorBrush* m_pBrush;				// 렌더타겟이 생성하는 리소스 역시 장치의존
 
 public:
 

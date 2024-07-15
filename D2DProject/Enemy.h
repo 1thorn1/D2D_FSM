@@ -4,10 +4,15 @@
 class Enemy
 	: public GameObject
 {
-
 public:
+	AnimationScene* EnemyAni;
+	FiniteStateMachine* fsm;
+
 	Enemy();
 	~Enemy();
 
-	void Update();
+	virtual void Initialize();
+	virtual void Update();
+	virtual void Render();
+
 };
