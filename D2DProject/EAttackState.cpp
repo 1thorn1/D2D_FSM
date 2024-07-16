@@ -5,12 +5,21 @@ void EAttackState::Enter()
 	AnimationScene* EMoveAni;
 	EMoveAni = m_pOwner->GetOwner()->GetComponent<AnimationScene>();
 	EMoveAni->LoadAnimationAsset(L"CSV/EAttack.txt");
-	EMoveAni->SetAnimation(4, 0);
+	EMoveAni->SetAnimation(5, 0);
 }
 
 void EAttackState::Update()
 {
-	// 플레이어가 mid 바운드 박스로 들어오면 Attack 모션 취하기
+	FiniteStateMachine* fsm = m_pOwner->GetOwner()->GetComponent<FiniteStateMachine>();
+	if (DemoApp::m_pPlayer->m_BoundBox.CheckIntersect(owner->BmidRect))
+	{
+		fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x += 0;
+	}
+	else if (DemoApp::m_pPlayer->m_BoundBox.CheckIntersect(owner->BmaxRect) &&
+			!DemoApp::m_pPlayer->m_BoundBox.CheckIntersect(owner->BmidRect))
+	{
+		fsm->SetCurState("EMove");
+	}
 }
 
 void EAttackState::Exit()

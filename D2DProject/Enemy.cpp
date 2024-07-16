@@ -30,8 +30,10 @@ void Enemy::Update()
 {
 	__super::Update();
 	 // 바운드 박스를 초기화 해줄 것 ㅠㅠ
+	BmidRect.m_Center = m_pRootScene->GetWorldLocation();
 	BmaxRect.m_Center = m_pRootScene->GetWorldLocation();
-	BmaxRect.m_Extend = { m_BoundBox.m_Extend.x * 10, m_BoundBox.m_Extend.y * 10 };
+	BmidRect.m_Extend = { m_BoundBox.m_Extend.x + 10, m_BoundBox.m_Extend.y + 10 };
+	BmaxRect.m_Extend = { m_BoundBox.m_Extend.x + 200, m_BoundBox.m_Extend.y + 200 };
 }
 
 void Enemy::Render()
@@ -49,19 +51,8 @@ void Enemy::Render()
 
 	// 에너미의 박스 콜라이더 or 애니메이션 사이즈를 가져와서 크기를 키우자 
 	// +  그 크기만큼의 콜라이더를 만들어주기
-	D2D1_RECT_F midRect = D2D1::RectF(-100, -100, EnemyAni->m_DstRect.right + 100, EnemyAni->m_DstRect.bottom + 100);
+	D2D1_RECT_F midRect = D2D1::RectF(-10, -10, EnemyAni->m_DstRect.right + 10, EnemyAni->m_DstRect.bottom + 10);
 	D2D1_RECT_F maxRect = D2D1::RectF(-200, -200, EnemyAni->m_DstRect.right + 200, EnemyAni->m_DstRect.bottom + 200);
-
-	// AABB 객체 초기화
-	BmidRect.minX = midRect.left;    // -100
-	BmidRect.minY = midRect.top;     // -100
-	BmidRect.maxX = midRect.right;   // EnemyAni->m_DstRect.right + 100
-	BmidRect.maxY = midRect.bottom;  // EnemyAni->m_DstRect.bottom + 100
-
-	BmaxRect.minX = maxRect.left;    // -200
-	BmaxRect.minY = maxRect.top;     // -200
-	BmaxRect.maxX = maxRect.right;   // EnemyAni->m_DstRect.right + 200
-	BmaxRect.maxY = maxRect.bottom;  // EnemyAni->m_DstRect.bottom + 200
 	
 	D2DRender::GetRenderTarget()->DrawRectangle(&midRect, D2DRender::GetID2D1SolidColorBrush());
 	D2DRender::GetRenderTarget()->DrawRectangle(&maxRect, D2DRender::GetID2D1SolidColorBrush());
