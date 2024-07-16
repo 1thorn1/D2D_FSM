@@ -7,6 +7,9 @@ class Enemy
 public:
 	AnimationScene* EnemyAni;
 	FiniteStateMachine* fsm;
+	AABB BmidRect;
+	AABB BmaxRect;
+	
 
 	Enemy();
 	~Enemy();

@@ -65,15 +65,15 @@ void AnimationScene::Update()
 	if (m_bMirror) //x 축 스케일은 좌우 반전 , Translation 은 출력할 이미지의 원점 정보
 	{
 		m_ImageTransform = D2D1::Matrix3x2F::Scale(-1.0f, 1.0f, D2D1::Point2F(0, 0));
-			//D2D1::Matrix3x2F::Translation(Frame.Center.x, Frame.Center.y);
+		//D2D1::Matrix3x2F::Translation(Frame.Center.x, Frame.Center.y);
 	}
 	else
 	{
 		m_ImageTransform = D2D1::Matrix3x2F::Scale(1.0f, 1.0f, D2D1::Point2F(0, 0));
-			//D2D1::Matrix3x2F::Translation(Frame.Center.x * -1, Frame.Center.y);
+		//D2D1::Matrix3x2F::Translation(Frame.Center.x * -1, Frame.Center.y);
 	}
 
-  	GetOwner()->m_BoundBox.m_Extend = { m_DstRect.right / 2, m_DstRect.bottom / 2 };
+	GetOwner()->m_BoundBox.m_Extend = { m_DstRect.right / 2, m_DstRect.bottom / 2 }; // 아 이미 바운드 박스를 만들었구나
 }
 
 void AnimationScene::Render()
@@ -87,15 +87,18 @@ void AnimationScene::Render()
 		// 중심축을 기준으로 행렬연산을 하기 위해 중심축을 먼저 옮겨줌
 		D2D1::Matrix3x2F::Translation(-center.width, -center.height) *
 		// 이미지의 행렬(지금은 Scale만 있음)과 Scene의 행렬을 연산
-		m_ImageTransform * m_WorldTransform *
+		m_ImageTransform * m_WorldTransform
 		// 카메라의 역행렬
-		dynamic_cast<CameraScene*>(GetOwner()->m_pOwner->mainCamera->m_pRootScene)->m_CameraMatrix);
-		D2DRender::GetRenderTarget()->DrawBitmap(m_pBitmap, m_DstRect
-			, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, m_SrcRect);
+		* dynamic_cast<CameraScene*>(GetOwner()->m_pOwner->mainCamera->m_pRootScene)->m_CameraMatrix); //-> 카메라 중심 기준으로 월드 좌표
 
-		// 변환 초기화 무조건!!
+	D2DRender::GetRenderTarget()->DrawBitmap(m_pBitmap, m_DstRect
+		, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, m_SrcRect);
+
+	D2D1_RECT_F Rect = D2D1::RectF(0, 0, m_DstRect.right, m_DstRect.bottom);
+	D2DRender::GetRenderTarget()->DrawRectangle(&Rect, D2DRender::GetID2D1SolidColorBrush());
+
+	// 변환 초기화 무조건!!
 	D2DRender::GetRenderTarget()->SetTransform(D2D1::Matrix3x2F::Identity());
-
 }
 
 void AnimationScene::SetAnimation(int index, bool mirror)

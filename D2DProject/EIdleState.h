@@ -1,13 +1,14 @@
 #pragma once
-#include "DemoApp.h"
+#include "IEnemyState.h"
 #include "Enemy.h"
+#include "Player.h"
 
-class EIdleState : public FSMState
+class EIdleState : public IEnemyState
 {
 	InputManager KeyManager;
 public:
 	EIdleState(FiniteStateMachine* pOwner, std::string Name)
-		:FSMState(pOwner, Name)
+		:IEnemyState(pOwner, Name)
 	{}
 	virtual ~EIdleState() {}
 

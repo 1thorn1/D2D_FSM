@@ -29,25 +29,43 @@ void Enemy::Initialize()
 void Enemy::Update()
 {
 	__super::Update();
-
+	 // 바운드 박스를 초기화 해줄 것 ㅠㅠ
+	BmaxRect.m_Center = m_pRootScene->GetWorldLocation();
+	BmaxRect.m_Extend = { m_BoundBox.m_Extend.x * 10, m_BoundBox.m_Extend.y * 10 };
 }
 
 void Enemy::Render()
 {
 	__super::Render();
-	// 에너미의 박스 콜라이더 생성
-	D2D_SIZE_F size = EnemyAni->m_pBitmap->GetSize();
-	m_BoundBox.m_Extend.x = size.width * 0.5f;
-	m_BoundBox.m_Extend.y = size.height * 0.5f;
 
-	// 사각형 그리기
-	D2D1_RECT_F rectangle = D2D1::RectF(
-		m_BoundBox.m_Center.x - m_BoundBox.m_Extend.x, m_BoundBox.m_Center.y - m_BoundBox.m_Extend.y,
-		m_BoundBox.m_Center.x + m_BoundBox.m_Extend.x, m_BoundBox.m_Center.y + m_BoundBox.m_Extend.y
-	);
+	D2D1_SIZE_F center = D2D1::SizeF((EnemyAni->m_SrcRect.right - EnemyAni->m_SrcRect.left) / 2, (EnemyAni->m_SrcRect.bottom - EnemyAni->m_SrcRect.top) / 2);
+	D2DRender::GetRenderTarget()->SetTransform(
+		// 중심축을 기준으로 행렬연산을 하기 위해 중심축을 먼저 옮겨줌
+		D2D1::Matrix3x2F::Translation(-center.width, -center.height) *
+		// 이미지의 행렬(지금은 Scale만 있음)과 Scene의 행렬을 연산
+		EnemyAni->m_ImageTransform * EnemyAni->m_WorldTransform
+		// 카메라의 역행렬
+		* dynamic_cast<CameraScene*>(m_pOwner->mainCamera->m_pRootScene)->m_CameraMatrix); //-> 카메라 중심 기준으로 월드 좌표
 
-	// 에너미의 박스 콜라이더 출력
+	// 에너미의 박스 콜라이더 or 애니메이션 사이즈를 가져와서 크기를 키우자 
+	// +  그 크기만큼의 콜라이더를 만들어주기
+	D2D1_RECT_F midRect = D2D1::RectF(-100, -100, EnemyAni->m_DstRect.right + 100, EnemyAni->m_DstRect.bottom + 100);
+	D2D1_RECT_F maxRect = D2D1::RectF(-200, -200, EnemyAni->m_DstRect.right + 200, EnemyAni->m_DstRect.bottom + 200);
+
+	// AABB 객체 초기화
+	BmidRect.minX = midRect.left;    // -100
+	BmidRect.minY = midRect.top;     // -100
+	BmidRect.maxX = midRect.right;   // EnemyAni->m_DstRect.right + 100
+	BmidRect.maxY = midRect.bottom;  // EnemyAni->m_DstRect.bottom + 100
+
+	BmaxRect.minX = maxRect.left;    // -200
+	BmaxRect.minY = maxRect.top;     // -200
+	BmaxRect.maxX = maxRect.right;   // EnemyAni->m_DstRect.right + 200
+	BmaxRect.maxY = maxRect.bottom;  // EnemyAni->m_DstRect.bottom + 200
+	
+	D2DRender::GetRenderTarget()->DrawRectangle(&midRect, D2DRender::GetID2D1SolidColorBrush());
+	D2DRender::GetRenderTarget()->DrawRectangle(&maxRect, D2DRender::GetID2D1SolidColorBrush());
+
 	D2DRender::GetRenderTarget()->SetTransform(D2D1::IdentityMatrix());
 
-	D2DRender::GetRenderTarget()->DrawRectangle(&rectangle, D2DRender::GetID2D1SolidColorBrush());
 }

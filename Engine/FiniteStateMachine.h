@@ -21,6 +21,7 @@ public:
 	void CreateState(const std::string StateName)
 	{
 		T* pState = new T(this, StateName);
+		pState->Initialize();
 		m_pStates.insert(std::make_pair(pState->GetName(), pState));
 	}
 };

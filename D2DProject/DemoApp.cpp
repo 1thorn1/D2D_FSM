@@ -2,6 +2,8 @@
 #include "Player.h"
 #include "Enemy.h"
 
+Player* DemoApp::m_pPlayer = nullptr;
+
 void DemoApp::Initialize(HINSTANCE hInstance)
 {
 	__super::Initialize(hInstance);
@@ -25,7 +27,7 @@ void DemoApp::Initialize(HINSTANCE hInstance)
 
 
 	// 플레이어 생성
-	clone = tempWorld.CreateGameObject<Player>();
+	m_pPlayer = tempWorld.CreateGameObject<Player>();
 }
 
 void DemoApp::CheckKeyInput()

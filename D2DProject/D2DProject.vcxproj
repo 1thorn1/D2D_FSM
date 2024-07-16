@@ -135,9 +135,9 @@
     <ClInclude Include="EIdleState.h" />
     <ClInclude Include="EMoveState.h" />
     <ClInclude Include="Enemy.h" />
-    <ClInclude Include="EnemyState.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="IdleState.h" />
+    <ClInclude Include="IEnemyState.h" />
     <ClInclude Include="MoveState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
@@ -151,8 +151,8 @@
     <ClCompile Include="EIdleState.cpp" />
     <ClCompile Include="EMoveState.cpp" />
     <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="IdleState.cpp" />
+    <ClCompile Include="IEnemyState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveState.cpp" />
     <ClCompile Include="Player.cpp" />

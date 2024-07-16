@@ -5,10 +5,10 @@ void MoveState::Enter()
 	// Walk애니메이션 재생!
 	//m_pOwner->GetOwner()->GetComponent<AnimationScene>()->m_bMirror = false;
 
-	AnimationScene* ani;
-	ani = m_pOwner->GetOwner()->GetComponent<AnimationScene>();
-	ani->LoadAnimationAsset(L"CSV/KenMove.txt");
-	ani->SetAnimation(3, 0);
+	AnimationScene* PMoveAni;
+	PMoveAni = m_pOwner->GetOwner()->GetComponent<AnimationScene>();
+	PMoveAni->LoadAnimationAsset(L"CSV/KenMove.txt");
+	PMoveAni->SetAnimation(3, 0);
 	m_pOwner->GetOwner()->GetComponent<AnimationScene>()->m_bMirror = true;
 }
 
@@ -42,7 +42,7 @@ void MoveState::Update()
 		!KeyManager.IsKeyDown('D'))
 	{
 		fsm->SetCurState("Idle");
-	}
+	} 
 }
 void MoveState::Exit()
 {

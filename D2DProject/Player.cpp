@@ -6,7 +6,7 @@ Player::Player()
 {
 	PlayerAni = CreateComponent<AnimationScene>();
 	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/ken.png", &PlayerAni->m_pBitmap);
-	PlayerAni->m_RelativeLocation = { 200 ,200 };
+	PlayerAni->m_RelativeLocation = { 100 ,200 };
 	SetRootScene(PlayerAni);
 
 	fsm = CreateComponent<FiniteStateMachine>();
