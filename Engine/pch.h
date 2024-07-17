@@ -32,6 +32,7 @@
 #include <vector>
 #include <map>
 #include <list>
+#include <cmath>
 
 #include <sstream>
 #include <fstream>

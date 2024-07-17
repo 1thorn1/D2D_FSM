@@ -16,6 +16,9 @@ void EMoveState::Update()
 	   !DemoApp::m_pPlayer->m_BoundBox.CheckIntersect(owner->BmidRect))
 	{
 		fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x -= 0.5;
+		// 플레이어의 좌표와 에너미 좌표 거리 계산하기
+
+
 	}
 	else
 	{
@@ -29,5 +32,9 @@ void EMoveState::Update()
 }
 
 void EMoveState::Exit()
+{
+}
+
+void EMoveState::OnAnimationEnd(AnimationScene* pComponent, const std::string& AnimationName)
 {
 }

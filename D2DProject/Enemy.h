@@ -9,8 +9,8 @@ public:
 	FiniteStateMachine* fsm;
 	AABB BmidRect;
 	AABB BmaxRect;
-	
 
+	
 	Enemy();
 	~Enemy();
 

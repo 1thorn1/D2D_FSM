@@ -7,7 +7,7 @@ Enemy::Enemy()
 {
 	EnemyAni = GameObject::CreateComponent<AnimationScene>();
 	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/Enemy.png", &EnemyAni->m_pBitmap);
-	EnemyAni->m_RelativeLocation = { 400 ,200 };
+	EnemyAni->m_RelativeLocation = { 300 ,200 };
 	SetRootScene(EnemyAni);
 
 	fsm = CreateComponent<FiniteStateMachine>();
@@ -33,7 +33,7 @@ void Enemy::Update()
 	BmidRect.m_Center = m_pRootScene->GetWorldLocation();
 	BmaxRect.m_Center = m_pRootScene->GetWorldLocation();
 	BmidRect.m_Extend = { m_BoundBox.m_Extend.x + 10, m_BoundBox.m_Extend.y + 10 };
-	BmaxRect.m_Extend = { m_BoundBox.m_Extend.x + 200, m_BoundBox.m_Extend.y + 200 };
+	BmaxRect.m_Extend = { m_BoundBox.m_Extend.x + 300, m_BoundBox.m_Extend.y + 300 };
 }
 
 void Enemy::Render()
@@ -52,7 +52,7 @@ void Enemy::Render()
 	// 에너미의 박스 콜라이더 or 애니메이션 사이즈를 가져와서 크기를 키우자 
 	// +  그 크기만큼의 콜라이더를 만들어주기
 	D2D1_RECT_F midRect = D2D1::RectF(-10, -10, EnemyAni->m_DstRect.right + 10, EnemyAni->m_DstRect.bottom + 10);
-	D2D1_RECT_F maxRect = D2D1::RectF(-200, -200, EnemyAni->m_DstRect.right + 200, EnemyAni->m_DstRect.bottom + 200);
+	D2D1_RECT_F maxRect = D2D1::RectF(-300, -300, EnemyAni->m_DstRect.right + 300, EnemyAni->m_DstRect.bottom + 300);
 	
 	D2DRender::GetRenderTarget()->DrawRectangle(&midRect, D2DRender::GetID2D1SolidColorBrush());
 	D2DRender::GetRenderTarget()->DrawRectangle(&maxRect, D2DRender::GetID2D1SolidColorBrush());

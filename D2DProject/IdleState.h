@@ -2,7 +2,8 @@
 #include "DemoApp.h"
 #include "Player.h"
 
-class IdleState : public FSMState
+class IdleState 
+	: public FSMState
 {
 	InputManager KeyManager;
 public:
@@ -14,4 +15,5 @@ public:
 	void Enter();
 	void Update();
 	void Exit();
+
 };

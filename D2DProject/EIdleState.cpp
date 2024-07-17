@@ -29,3 +29,7 @@ void EIdleState::Update()
 void EIdleState::Exit()
 {
 }
+
+void EIdleState::OnAnimationEnd(AnimationScene* pComponent, const std::string& AnimationName)
+{
+}

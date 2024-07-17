@@ -3,7 +3,7 @@
 #include "Enemy.h"
 #include "Player.h"
 
-class EAttackState : public IEnemyState
+class EAttackState : public IEnemyState, public IAnimationProcesser
 {
 	InputManager KeyManager;
 public:
@@ -15,5 +15,7 @@ public:
 	void Enter();
 	void Update();
 	void Exit();
+
+	virtual void OnAnimationEnd(AnimationScene* pComponent, const std::string& AnimationName);
 };
 

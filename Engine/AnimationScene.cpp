@@ -20,6 +20,11 @@ AnimationScene::~AnimationScene()
 	}
 }
 
+bool AnimationScene::IsAnimationEnd()
+{
+	return m_bAnimationEnd;
+}
+
 void AnimationScene::LoadAnimationAsset(const std::wstring strFilePath)
 {
 	// ResourceManager를 통하여 AnimationAsset을 로드한다.
@@ -46,17 +51,34 @@ void AnimationScene::Update()
 
 	m_FrameTime += 0.02;
 
+	// 애니메이션 루프 조건분기가 설정이 안되있고 무한루프 기준으로 루프도는중
 	if (m_FrameTime > Frame.Duration)
 	{
 		// 0 ~ 3 돌게 해야하는데
 		// MaxFrameCount가 4니까
 		// 3에서 4로 넘어가려고 하면 못가게 해야겠지?
 		m_FrameIndexCurr++;
+		// Animation end
 		if (m_FrameIndexCurr == MaxFrameCount)
 		{
 			m_FrameIndexCurr = 0;
 		}
+		// 애니메이션이 루프가 아닐 때 예외처리도 해야한다
+		// 예를 들어 공격 모션은 공격 범위에 들어왔을 때는 무한 루프
+		// 공격 범위를 빠져나가면 MaxFrameCount -1 까지만 움직이고
+		// 애니메이션이 끝나면 이동상태로 변경
+		// m_FrameIndexCurr = MaxFrameCount -1;
 		m_FrameTime = 0;
+
+		// 마지막 프레임으로 번호가 변할때 단한번 이벤트 호출
+		if (m_FrameIndexCurr != m_FrameIndexPrev	// 이전 프레임과 현재 프레임이 다르고
+			&& m_FrameIndexCurr == (MaxFrameCount - 1)) // 현재 프레임이 마지막 프레임이라면)
+		{
+			m_bAnimationEnd = true;
+
+			if (m_pAnimationProcesser != nullptr)	// IAnimationProcesser를 구현한 클래스의 인스턴스 주소를 설정했다면
+				m_pAnimationProcesser->OnAnimationEnd(this, m_pAnimationInfo->Name);
+		}
 	}
 
 	m_SrcRect = Frame.Source;
