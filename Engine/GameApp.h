@@ -11,7 +11,6 @@
 #include "FSMState.h"
 #include "GameObject.h"
 #include "FiniteStateMachine.h"
-#include "Vector2.h"
 
 class GameApp
 {

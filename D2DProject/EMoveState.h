@@ -2,6 +2,7 @@
 #include "IEnemyState.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "../Engine/MathHelper.h"
 
 class EMoveState : public IEnemyState, public IAnimationProcesser
 {

@@ -9,12 +9,13 @@ public:
 	FiniteStateMachine* fsm;
 	AABB BmidRect;
 	AABB BmaxRect;
-
+	float m_speed;
+	
 	
 	Enemy();
 	~Enemy();
 
-	virtual void Initialize();
+	virtual void Initialize(float x, float y, float speed);
 	virtual void Update();
 	virtual void Render();
 

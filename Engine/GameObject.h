@@ -26,7 +26,7 @@ public:
 	const AABB& GetBoundBox() const { return m_BoundBox; }
 	void AddComponent(Component* pComponent);	// 사용할 컴포넌트를 추가
 	void SetOwner(World* pOwner) { m_pOwner = pOwner; }
-	D2D1_VECTOR_2F GetWorldLocation();
+	Vector2F GetWorldLocation();
 
 	template<typename T>
 	T* CreateComponent()

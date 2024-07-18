@@ -25,6 +25,8 @@
 #include <dwrite.h>
 
 #include <d2d1helper.h>
+#include <D2D1Helper.h>
+#include "MathHelper.h"
 
 #include <wincodec.h>
 #include <comdef.h>
@@ -33,6 +35,7 @@
 #include <map>
 #include <list>
 #include <cmath>
+#include <math.h>
 
 #include <sstream>
 #include <fstream>

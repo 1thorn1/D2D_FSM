@@ -7,7 +7,8 @@ Enemy::Enemy()
 {
 	EnemyAni = GameObject::CreateComponent<AnimationScene>();
 	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/Enemy.png", &EnemyAni->m_pBitmap);
-	EnemyAni->m_RelativeLocation = { 300 ,200 };
+	//EnemyAni->m_RelativeLocation = { 300 ,200 };
+	Initialize(300, 200, 0.2f);
 	SetRootScene(EnemyAni);
 
 	fsm = CreateComponent<FiniteStateMachine>();
@@ -22,8 +23,11 @@ Enemy::~Enemy()
 }
 
 
-void Enemy::Initialize()
+void Enemy::Initialize(float x, float y, float speed)
 {
+	EnemyAni->m_RelativeLocation.x = x;
+	EnemyAni->m_RelativeLocation.y = y;
+	m_speed = speed;
 }
 
 void Enemy::Update()

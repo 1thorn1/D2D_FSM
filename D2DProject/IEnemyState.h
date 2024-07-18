@@ -3,15 +3,14 @@
 #include "Enemy.h"
 
 class IEnemyState
-	: public FSMState
+	: public T_FSMState<Enemy>
 {
-protected:
-	Enemy* owner = nullptr;
+
 public:
-	IEnemyState(FiniteStateMachine* pOwner, std::string Name) : FSMState(pOwner, Name) {}
+	IEnemyState(FiniteStateMachine* pOwner, std::string Name) : T_FSMState(pOwner, Name) {}
 	virtual void Initialize()
 	{
-		owner = dynamic_cast<Enemy*>(this->m_pOwner->GetOwner());
+		//owner = dynamic_cast<Enemy*>(this->m_pOwner->GetOwner());
 	}
 	virtual void Enter() = 0;
 	virtual void Update() = 0;

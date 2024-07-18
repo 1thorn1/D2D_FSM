@@ -23,3 +23,18 @@ public:
 	virtual void Update() = 0;
 	virtual void Exit()   = 0;
 };
+
+template <typename T>
+class T_FSMState 
+	: public FSMState
+{
+public:
+	T_FSMState(FiniteStateMachine* pOwner, std::string Name)
+		: FSMState(pOwner, Name)
+	{
+		owner = dynamic_cast<T*>(this->m_pOwner->GetOwner());
+	}
+protected:
+	T* owner;
+
+};

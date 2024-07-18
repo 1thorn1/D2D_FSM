@@ -15,10 +15,13 @@ void EMoveState::Update()
 	if (DemoApp::m_pPlayer->m_BoundBox.CheckIntersect(owner->BmaxRect) &&
 	   !DemoApp::m_pPlayer->m_BoundBox.CheckIntersect(owner->BmidRect))
 	{
-		fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x -= 0.5;
+		//fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x -= 0.5;
 		// 플레이어의 좌표와 에너미 좌표 거리 계산하기
+		Vector2F direction = DemoApp::m_pPlayer->PlayerAni->m_RelativeLocation - owner->EnemyAni->m_RelativeLocation;
+		direction.Normalize();
+		direction *= owner->m_speed * 5;
 
-
+		owner->EnemyAni->m_RelativeLocation += direction;
 	}
 	else
 	{

@@ -4,7 +4,7 @@
 struct FRAME_INFO
 {
 	D2D1_RECT_F		Source;   // 이미지에서 하나의 장면이 어느 영역에 있는지
-	D2D1_VECTOR_2F  Center;   // 하나의 FRAME에서 좌측상단 0,0 기준 중점의 좌표
+	Vector2F	    Center;   // 하나의 FRAME에서 좌측상단 0,0 기준 중점의 좌표
 	FLOAT			Duration; // 하나의 장면이 그려지는 시간
 
 	// 아무 인수 없이 객체를 생성할 때 사용됩니다.

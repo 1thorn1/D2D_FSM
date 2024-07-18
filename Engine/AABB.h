@@ -21,10 +21,10 @@
 class AABB
 {
 public:
-	AABB() : m_Center{0}, m_Extend{0}{}
+	AABB() : m_Center(), m_Extend() {}
 public:
-	D2D1_VECTOR_2F m_Center; // 중앙
-	D2D1_VECTOR_2F m_Extend; // x,y 축 확장값
+	Vector2F m_Center; // 중앙
+	Vector2F m_Extend; // x,y 축 확장값
 
 	float minX = m_Center.x - m_Extend.x;
 	float maxX = m_Center.x + m_Extend.x;

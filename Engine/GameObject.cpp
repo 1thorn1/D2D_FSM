@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Component.h"
 #include "Scene.h"
+#include "MathHelper.h"
 
 GameObject::GameObject()
 {
@@ -44,9 +45,9 @@ void GameObject::AddComponent(Component* pComponent)
 	m_OwnedComponents.push_back(pComponent);
 }
 
-D2D1_VECTOR_2F GameObject::GetWorldLocation()
+Vector2F GameObject::GetWorldLocation()
 {
-	D2D1_VECTOR_2F temp{ 0,0 };
+	Vector2F temp{ 0,0 };
 	if (m_pRootScene)
 		temp = m_pRootScene->GetWorldLocation(); //Scene의 GetWorldLocation이랑 GameObject의 GetWorldLocation의 차이?
 
