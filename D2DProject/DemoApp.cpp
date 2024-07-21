@@ -22,6 +22,7 @@ void DemoApp::Initialize(HINSTANCE hInstance)
 	Background->SetAnimation(0, 0);
 	clone->m_pRootScene = Background;
 
+
 	// 새로운 백그라운드
 	clone = tempWorld.CreateGameObject<GameObject>();
 	BitmapScene* Background1 = clone->CreateComponent<BitmapScene>();
@@ -54,9 +55,17 @@ void DemoApp::Initialize(HINSTANCE hInstance)
 	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/Vball.png", &Background4->m_pBitmap);
 	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DBall.txt", &Background4->m_pAnimationAsset);
 	Background4->SetAnimation(10, 0);
-	Background4->m_RelativeLocation = { -300,0 };
+	Background4->m_RelativeLocation = { -500,0 };
 	Background4->m_RelativeScale = { 1.3f,1.3f };
 	clone->m_pRootScene = Background4;
+
+	// 중간 콜라이더?
+	clone = tempWorld.CreateGameObject<GameObject>();
+	BitmapScene* Background5 = clone->CreateComponent<BitmapScene>();
+	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/nashigoraengs.png", &(Background5->m_pBitmap));
+	Background5->m_RelativeLocation = { 510,400 };
+	//Background5->m_RelativeScale = { 0.5f, 0.5f };
+
 
 
 	// 적 생성
