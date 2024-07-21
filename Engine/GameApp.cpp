@@ -13,45 +13,46 @@ void GameApp::Initialize(HINSTANCE hInstance)
 
 HWND GameApp::InitWindow()
 {
-	const TCHAR* appName = TEXT("디투디 연습을 게을리하지 말 것");
+    const TCHAR* appName = TEXT("디투디 연습을 게을리하지 말 것");
 
-	//Step 1: Registering the Window Class
+    // Step 1: Registering the Window Class
+    WNDCLASS wndClass;
+    wndClass.style = CS_HREDRAW | CS_VREDRAW;
+    wndClass.lpfnWndProc = WndProc;
+    wndClass.cbClsExtra = 0;
+    wndClass.cbWndExtra = 0;
+    wndClass.hInstance = m_hInstance;
+    wndClass.hIcon = LoadIcon(m_hInstance, IDI_APPLICATION);
+    wndClass.hCursor = LoadCursor(NULL, IDC_ARROW);
+    wndClass.hbrBackground = static_cast<HBRUSH>(GetStockObject(WHITE_BRUSH));
+    wndClass.lpszMenuName = NULL;
+    wndClass.lpszClassName = appName;
+    RegisterClass(&wndClass);
 
-	WNDCLASS wndClass;
+    // Step 2: Creating the Window
+    RECT rect{ 0, 0, 1024, 600 };
+    ::AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE);
 
-	wndClass.style = CS_HREDRAW | CS_VREDRAW;
-	wndClass.lpfnWndProc = WndProc;
-	wndClass.cbClsExtra = 0;
-	wndClass.cbWndExtra = 0;
-	wndClass.hInstance = m_hInstance;
-	wndClass.hIcon = LoadIcon(m_hInstance, IDI_APPLICATION);
-	wndClass.hCursor = LoadCursor(NULL, IDC_ARROW);
-	wndClass.hbrBackground = static_cast<HBRUSH>(GetStockObject(WHITE_BRUSH));
-	wndClass.lpszMenuName = NULL;
-	wndClass.lpszClassName = appName;
+    int windowWidth = rect.right - rect.left;
+    int windowHeight = rect.bottom - rect.top;
 
-	RegisterClass(&wndClass);
+    // Get the dimensions of the primary monitor
+    int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+    int screenHeight = GetSystemMetrics(SM_CYSCREEN);
 
-	// Step 2: Creating the Window
+    // Calculate the position for centering the window
+    int posX = (screenWidth - windowWidth) / 2;
+    int posY = (screenHeight - windowHeight) / 2;
 
-	RECT rect{ 0,0,1600,800 };
+    m_hWnd = CreateWindow(appName, appName, WS_OVERLAPPED | WS_SYSMENU,
+        posX, posY, windowWidth, windowHeight, NULL, NULL, m_hInstance, NULL);
 
-	::AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE);
+    ShowWindow(m_hWnd, SW_SHOWNORMAL);
+    UpdateWindow(m_hWnd);
 
-	int width = rect.right - rect.left;
-	int height = rect.bottom - rect.top;
-
-	m_hWnd = CreateWindow(appName, appName, WS_OVERLAPPED | WS_SYSMENU,
-		0, 0, width, height, NULL, NULL, m_hInstance, NULL);
-
-
-	ShowWindow(m_hWnd, SW_SHOWNORMAL);
-	UpdateWindow(m_hWnd);
-
-
-	//return m_hWnd;
-	return HWND();
+    return m_hWnd;
 }
+
 
 void GameApp::FixedUpdate()
 {

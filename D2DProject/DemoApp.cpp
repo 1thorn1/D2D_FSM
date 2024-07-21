@@ -22,10 +22,46 @@ void DemoApp::Initialize(HINSTANCE hInstance)
 	Background->SetAnimation(0, 0);
 	clone->m_pRootScene = Background;
 
+	// 새로운 백그라운드
+	clone = tempWorld.CreateGameObject<GameObject>();
+	BitmapScene* Background1 = clone->CreateComponent<BitmapScene>();
+	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/background.bmp", &(Background1->m_pBitmap));
+	Background1->m_RelativeLocation = { 510,300 };
+	Background1->m_RelativeScale = { 1.65f,1.3f };
+
+	// 삒깿쯖을 생성
+	clone = tempWorld.CreateGameObject<GameObject>();
+	AnimationScene* Background2 = clone->CreateComponent<AnimationScene>();
+	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/realpikachuuu.png", &Background2->m_pBitmap);
+	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DRun.txt", &Background2->m_pAnimationAsset);
+	Background2->SetAnimation(8, 0);
+	Background2->m_RelativeScale = { 2.2f,2.2f };
+	clone->m_pRootScene = Background2;
+
+	// 상대 삒깾쯖을 만들어
+	clone = tempWorld.CreateGameObject<GameObject>();
+	AnimationScene* Background3 = clone->CreateComponent<AnimationScene>();
+	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/realpikachuuu.png", &Background3->m_pBitmap);
+	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DRun.txt", &Background3->m_pAnimationAsset);
+	Background3->SetAnimation(8, 1);
+	Background3->m_RelativeLocation = {-600,0};
+	Background3->m_RelativeScale = { 2.2f,2.2f };
+	clone->m_pRootScene = Background3;
+
+	// 배구공도 ㅇㅅㅇ
+	clone = tempWorld.CreateGameObject<GameObject>();
+	AnimationScene* Background4 = clone->CreateComponent<AnimationScene>();
+	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/Vball.png", &Background4->m_pBitmap);
+	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DBall.txt", &Background4->m_pAnimationAsset);
+	Background4->SetAnimation(10, 0);
+	Background4->m_RelativeLocation = { -300,0 };
+	Background4->m_RelativeScale = { 1.3f,1.3f };
+	clone->m_pRootScene = Background4;
+
+
 	// 적 생성
 	clone = tempWorld.CreateGameObject<Enemy>();
-
-
+	
 	// 플레이어 생성
 	m_pPlayer = tempWorld.CreateGameObject<Player>();
 }
@@ -78,6 +114,6 @@ void DemoApp::Render()
 	D2DRender::GetRenderTarget()->BeginDraw();
 	D2DRender::GetRenderTarget()->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 	tempWorld.Render();
-	PrintUsedVRAM();
+	//PrintUsedVRAM();
 	D2DRender::GetRenderTarget()->EndDraw();
 }

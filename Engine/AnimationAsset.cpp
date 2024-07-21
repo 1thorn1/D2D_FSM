@@ -40,6 +40,30 @@ bool AnimationAsset::LoadAnimation(std::wstring FilePath)
 	{
 		LoadAnimationFromCSV(6, L"CSV/EMove.txt");
 	}
+
+	// ˜—²¶©QÀÇ CSV ¿­±â
+	if (FilePath == std::wstring(L"CSV/Attack.txt"))
+	{
+		LoadAnimationFromCSV(7, L"CSV/Attack.txt");
+	}
+	if (FilePath == std::wstring(L"CSV/DRun.txt"))
+	{
+		LoadAnimationFromCSV(8, L"CSV/DRun.txt");
+	}
+	if (FilePath == std::wstring(L"CSV/Jump.txt"))
+	{
+		LoadAnimationFromCSV(9, L"CSV/Jump.txt");
+	}
+
+	// Âîll°ø¾²ÀÇ csv ¿­±â
+	if (FilePath == std::wstring(L"CSV/DBall.txt"))
+	{
+		LoadAnimationFromCSV(10, L"CSV/DBall.txt");
+	}
+	if (FilePath == std::wstring(L"CSV/PowerBall.txt"))
+	{
+		LoadAnimationFromCSV(11, L"CSV/PowerBall.txt");
+	}
 	return true;
 }
 
@@ -60,7 +84,7 @@ bool AnimationAsset::LoadAnimationFromCSV(int index, const wchar_t* fileName)
 		wss >> FrameCount;
 	}
 
-	m_Animations.resize(10);
+	m_Animations.resize(20);
 	m_Animations[index].Frames.resize(FrameCount);
 	for (int i = 0; i < FrameCount; i++)
 	{
