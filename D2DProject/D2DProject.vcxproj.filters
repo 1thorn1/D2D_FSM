@@ -25,6 +25,12 @@
     <Filter Include="소스 파일\State\PlayerState">
       <UniqueIdentifier>{aebb3deb-d57f-4c0c-866c-8b6a6183f08a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Players">
+      <UniqueIdentifier>{95618591-e988-45ca-b0a9-ab9e0edbd532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\PlayersState">
+      <UniqueIdentifier>{c1653ca7-35a6-4d27-9a5b-727480706690}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -72,6 +78,30 @@
     <ClInclude Include="IEnemyState.h">
       <Filter>소스 파일\State\EnemyState</Filter>
     </ClInclude>
+    <ClInclude Include="FPlayer.h">
+      <Filter>소스 파일\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="SPlayer.h">
+      <Filter>소스 파일\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="DRun.h">
+      <Filter>소스 파일\PlayersState</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack.h">
+      <Filter>소스 파일\PlayersState</Filter>
+    </ClInclude>
+    <ClInclude Include="Jump.h">
+      <Filter>소스 파일\PlayersState</Filter>
+    </ClInclude>
+    <ClInclude Include="SDRun.h">
+      <Filter>소스 파일\PlayersState</Filter>
+    </ClInclude>
+    <ClInclude Include="FDRun.h">
+      <Filter>소스 파일\PlayersState</Filter>
+    </ClInclude>
+    <ClInclude Include="Idle.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -109,6 +139,30 @@
     </ClCompile>
     <ClCompile Include="IEnemyState.cpp">
       <Filter>소스 파일\State\EnemyState</Filter>
+    </ClCompile>
+    <ClCompile Include="FPlayer.cpp">
+      <Filter>소스 파일\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="SPlayer.cpp">
+      <Filter>소스 파일\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="DRun.cpp">
+      <Filter>소스 파일\PlayersState</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack.cpp">
+      <Filter>소스 파일\PlayersState</Filter>
+    </ClCompile>
+    <ClCompile Include="Jump.cpp">
+      <Filter>소스 파일\PlayersState</Filter>
+    </ClCompile>
+    <ClCompile Include="SDRun.cpp">
+      <Filter>소스 파일\PlayersState</Filter>
+    </ClCompile>
+    <ClCompile Include="FDRun.cpp">
+      <Filter>소스 파일\PlayersState</Filter>
+    </ClCompile>
+    <ClCompile Include="Idle.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -54,15 +54,9 @@ bool AnimationAsset::LoadAnimation(std::wstring FilePath)
 	{
 		LoadAnimationFromCSV(9, L"CSV/Jump.txt");
 	}
-
-	// 찌릐릐공쓰의 csv 열기
-	if (FilePath == std::wstring(L"CSV/DBall.txt"))
+	if (FilePath == std::wstring(L"CSV/Idle.txt"))
 	{
-		LoadAnimationFromCSV(10, L"CSV/DBall.txt");
-	}
-	if (FilePath == std::wstring(L"CSV/PowerBall.txt"))
-	{
-		LoadAnimationFromCSV(11, L"CSV/PowerBall.txt");
+		LoadAnimationFromCSV(10, L"CSV/Idle.txt");
 	}
 	return true;
 }
@@ -84,7 +78,7 @@ bool AnimationAsset::LoadAnimationFromCSV(int index, const wchar_t* fileName)
 		wss >> FrameCount;
 	}
 
-	m_Animations.resize(20);
+	m_Animations.resize(15);
 	m_Animations[index].Frames.resize(FrameCount);
 	for (int i = 0; i < FrameCount; i++)
 	{

@@ -80,4 +80,4 @@ void BitmapScene::Render()
 	D2DRender::GetRenderTarget()->SetTransform(center * this->m_WorldTransform);
 	D2DRender::GetRenderTarget()->DrawBitmap(this->m_pBitmap);
 	D2DRender::GetRenderTarget()->SetTransform(D2D1::Matrix3x2F::Identity()); // 변환 초기화
-}
+} 

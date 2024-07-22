@@ -1,6 +1,5 @@
 #include "EAttackState.h"
 
-
 void EAttackState::Enter()
 {
 	AnimationScene* EMoveAni;

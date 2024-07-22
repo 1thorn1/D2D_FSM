@@ -127,35 +127,51 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Attack.h" />
     <ClInclude Include="AttackState.h" />
     <ClInclude Include="D2DProject.h" />
     <ClInclude Include="DeathState.h" />
     <ClInclude Include="DemoApp.h" />
+    <ClInclude Include="DRun.h" />
     <ClInclude Include="EAttackState.h" />
     <ClInclude Include="EIdleState.h" />
     <ClInclude Include="EMoveState.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="FDRun.h" />
+    <ClInclude Include="FPlayer.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Idle.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="IEnemyState.h" />
+    <ClInclude Include="Jump.h" />
     <ClInclude Include="MoveState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="SDRun.h" />
+    <ClInclude Include="SPlayer.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Attack.cpp" />
     <ClCompile Include="AttackState.cpp" />
     <ClCompile Include="DeathState.cpp" />
     <ClCompile Include="DemoApp.cpp" />
+    <ClCompile Include="DRun.cpp" />
     <ClCompile Include="EAttackState.cpp" />
     <ClCompile Include="EIdleState.cpp" />
     <ClCompile Include="EMoveState.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="FDRun.cpp" />
+    <ClCompile Include="FPlayer.cpp" />
+    <ClCompile Include="Idle.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="IEnemyState.cpp" />
+    <ClCompile Include="Jump.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveState.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SDRun.cpp" />
+    <ClCompile Include="SPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="D2DProject.rc" />

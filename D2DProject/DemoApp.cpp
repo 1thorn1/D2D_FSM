@@ -1,6 +1,8 @@
 #include "DemoApp.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "FPlayer.h"
+#include "SPlayer.h"
 
 Player* DemoApp::m_pPlayer = nullptr;
 
@@ -31,42 +33,44 @@ void DemoApp::Initialize(HINSTANCE hInstance)
 	Background1->m_RelativeScale = { 1.65f,1.3f };
 
 	// 삒깿쯖을 생성
-	clone = tempWorld.CreateGameObject<GameObject>();
-	AnimationScene* Background2 = clone->CreateComponent<AnimationScene>();
-	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/realpikachuuu.png", &Background2->m_pBitmap);
-	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DRun.txt", &Background2->m_pAnimationAsset);
-	Background2->SetAnimation(8, 0);
-	Background2->m_RelativeScale = { 2.2f,2.2f };
-	clone->m_pRootScene = Background2;
+	//clone = tempWorld.CreateGameObject<GameObject>();
+	//AnimationScene* Background2 = clone->CreateComponent<AnimationScene>();
+	//ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/realpikachuuu.png", &Background2->m_pBitmap);
+	//ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DRun.txt", &Background2->m_pAnimationAsset);
+	//Background2->SetAnimation(8, 0);
+	//Background2->m_RelativeScale = { 2.2f,2.2f };
+	//clone->m_pRootScene = Background2;
 
 	// 상대 삒깾쯖을 만들어
-	clone = tempWorld.CreateGameObject<GameObject>();
-	AnimationScene* Background3 = clone->CreateComponent<AnimationScene>();
-	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/realpikachuuu.png", &Background3->m_pBitmap);
-	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DRun.txt", &Background3->m_pAnimationAsset);
-	Background3->SetAnimation(8, 1);
-	Background3->m_RelativeLocation = {-600,0};
-	Background3->m_RelativeScale = { 2.2f,2.2f };
-	clone->m_pRootScene = Background3;
+	//clone = tempWorld.CreateGameObject<GameObject>();
+	//AnimationScene* Background3 = clone->CreateComponent<AnimationScene>();
+	//ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/realpikachuuu.png", &Background3->m_pBitmap);
+	//ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DRun.txt", &Background3->m_pAnimationAsset);
+	//Background3->SetAnimation(8, 1);
+	//Background3->m_RelativeLocation = {-600,0};
+	//Background3->m_RelativeScale = { 2.2f,2.2f };
+	//clone->m_pRootScene = Background3;
 
 	// 배구공도 ㅇㅅㅇ
-	clone = tempWorld.CreateGameObject<GameObject>();
-	AnimationScene* Background4 = clone->CreateComponent<AnimationScene>();
-	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/Vball.png", &Background4->m_pBitmap);
-	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DBall.txt", &Background4->m_pAnimationAsset);
-	Background4->SetAnimation(10, 0);
-	Background4->m_RelativeLocation = { -500,0 };
-	Background4->m_RelativeScale = { 1.3f,1.3f };
-	clone->m_pRootScene = Background4;
+	//clone = tempWorld.CreateGameObject<GameObject>();
+	//AnimationScene* Background4 = clone->CreateComponent<AnimationScene>();
+	//ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/Vball.png", &Background4->m_pBitmap);
+	//ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DBall.txt", &Background4->m_pAnimationAsset);
+	//Background4->SetAnimation(10, 0);
+	//Background4->m_RelativeLocation = { -500,0 };
+	//Background4->m_RelativeScale = { 1.3f,1.3f };
+	//clone->m_pRootScene = Background4;
 
 	// 중간 콜라이더?
-	clone = tempWorld.CreateGameObject<GameObject>();
-	BitmapScene* Background5 = clone->CreateComponent<BitmapScene>();
-	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/nashigoraengs.png", &(Background5->m_pBitmap));
-	Background5->m_RelativeLocation = { 510,400 };
-	//Background5->m_RelativeScale = { 0.5f, 0.5f };
+	//clone = tempWorld.CreateGameObject<GameObject>();
+	//BitmapScene* Background5 = clone->CreateComponent<BitmapScene>();
+	//ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/nashigoraeng.png", &(Background5->m_pBitmap));
+	//Background5->m_RelativeLocation = { 512,400 };
+	//Background5->m_RelativeScale = { 0.525f, 0.525f };
 
 
+	clone = tempWorld.CreateGameObject<FPlayer>();
+	clone = tempWorld.CreateGameObject<SPlayer>();
 
 	// 적 생성
 	clone = tempWorld.CreateGameObject<Enemy>();
@@ -79,14 +83,14 @@ void DemoApp::CheckKeyInput()
 {
 	InputManager KeyManager;
 
-	if (KeyManager.IsKeyDown(VK_LEFT))
-	{
-		tempWorld.mainCamera->m_pRootScene->m_RelativeLocation.x -= 1;
-	}
-	if (KeyManager.IsKeyDown(VK_RIGHT))
-	{
-		tempWorld.mainCamera->m_pRootScene->m_RelativeLocation.x += 1;
-	}
+	//if (KeyManager.IsKeyDown(VK_LEFT))
+	//{
+	//	tempWorld.mainCamera->m_pRootScene->m_RelativeLocation.x -= 1;
+	//}
+	//if (KeyManager.IsKeyDown(VK_RIGHT))
+	//{
+	//	tempWorld.mainCamera->m_pRootScene->m_RelativeLocation.x += 1;
+	//}
 }
 
 void DemoApp::PrintUsedVRAM()
