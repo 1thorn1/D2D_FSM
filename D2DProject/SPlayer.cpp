@@ -9,7 +9,7 @@ SPlayer::SPlayer()
 	SPlayerAni = CreateComponent<AnimationScene>();
 	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/realpikachuuu.png", &SPlayerAni->m_pBitmap);
 	SetRootScene(SPlayerAni);
-	SPlayerAni->m_RelativeLocation = { 20,0 };
+	//SPlayerAni->m_RelativeLocation = { 0,-180 };
 	SPlayerAni->m_RelativeScale = { 2.f,2.f };
 
 	fsm = CreateComponent<FiniteStateMachine>();

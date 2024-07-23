@@ -105,6 +105,12 @@
     <ClInclude Include="IPlayerState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -169,6 +175,12 @@
     </ClCompile>
     <ClCompile Include="IPlayerState.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>소스 파일\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

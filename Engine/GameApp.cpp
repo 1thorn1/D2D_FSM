@@ -9,11 +9,12 @@ void GameApp::Initialize(HINSTANCE hInstance)
 
 	InitWindow();
 	D2DRender::InitDirect2D(m_hWnd);
+    Debug.Get_Console();
 }
 
 HWND GameApp::InitWindow()
 {
-    const TCHAR* appName = TEXT("디투디 연습을 게을리하지 말 것");
+    const TCHAR* appName = TEXT("삑궷쯖 배구");
 
     // Step 1: Registering the Window Class
     WNDCLASS wndClass;
@@ -56,12 +57,10 @@ HWND GameApp::InitWindow()
 
 void GameApp::FixedUpdate()
 {
-	
 }
 
 void GameApp::Update()
 {
-	
 }
 
 
@@ -84,6 +83,7 @@ void GameApp::Run()
 		}
 		else
 		{
+            Collider_BTOB::Update();
 			Update();
 			Render();
 		}

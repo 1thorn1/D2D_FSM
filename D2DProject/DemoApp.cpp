@@ -3,6 +3,8 @@
 #include "Enemy.h"
 #include "FPlayer.h"
 #include "SPlayer.h"
+#include "Object.h"
+#include "Background.h"
 
 Player* DemoApp::m_pPlayer = nullptr;
 
@@ -18,19 +20,12 @@ void DemoApp::Initialize(HINSTANCE hInstance)
 
 	//백그라운드 생성 -> 함수로 만들겠음
 	clone = tempWorld.CreateGameObject<GameObject>();
-	AnimationScene* Background = clone->CreateComponent<AnimationScene>();
-	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/midnight.png", &Background->m_pBitmap);
-	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/midnight.txt", &Background->m_pAnimationAsset);
-	Background->SetAnimation(0, 0);
-	clone->m_pRootScene = Background;
+	AnimationScene* midnight = clone->CreateComponent<AnimationScene>();
+	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/midnight.png", &midnight->m_pBitmap);
+	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/midnight.txt", &midnight->m_pAnimationAsset);
+	midnight->SetAnimation(0, 0);
+	clone->m_pRootScene = midnight;
 
-
-	// 새로운 백그라운드
-	clone = tempWorld.CreateGameObject<GameObject>();
-	BitmapScene* Background1 = clone->CreateComponent<BitmapScene>();
-	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/background.bmp", &(Background1->m_pBitmap));
-	Background1->m_RelativeLocation = { 510,300 };
-	Background1->m_RelativeScale = { 1.65f,1.3f };
 
 	// 배구공도 ㅇㅅㅇ
 	//clone = tempWorld.CreateGameObject<GameObject>();
@@ -42,20 +37,25 @@ void DemoApp::Initialize(HINSTANCE hInstance)
 	//Background4->m_RelativeScale = { 1.3f,1.3f };
 	//clone->m_pRootScene = Background4;
 
-	// 중간 콜라이더?
-	//clone = tempWorld.CreateGameObject<GameObject>();
-	//BitmapScene* Background5 = clone->CreateComponent<BitmapScene>();
-	//ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/nashigoraeng.png", &(Background5->m_pBitmap));
-	//Background5->m_RelativeLocation = { 512,400 };
-	//Background5->m_RelativeScale = { 0.525f, 0.525f };
+	clone = tempWorld.CreateGameObject<Background>();
+	clone = tempWorld.CreateGameObject<Object>();
 
+	// 깃발
+	clone = tempWorld.CreateGameObject<GameObject>();
+	AnimationScene* flag = clone->CreateComponent<AnimationScene>();
+	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/flag.png", &flag->m_pBitmap);
+	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/flag.txt", &flag->m_pAnimationAsset);
+	flag->SetAnimation(11, 0);
+	flag->m_RelativeLocation = { -245-9,-60 };
+	flag->m_RelativeScale = { 2.0f,2.0f };
+	clone->m_pRootScene = flag;
 
 	clone = tempWorld.CreateGameObject<FPlayer>();
 	clone = tempWorld.CreateGameObject<SPlayer>();
 
 	// 적 생성
 	clone = tempWorld.CreateGameObject<Enemy>();
-	
+
 	// 플레이어 생성
 	m_pPlayer = tempWorld.CreateGameObject<Player>();
 }

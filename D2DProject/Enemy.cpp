@@ -58,8 +58,8 @@ void Enemy::Render()
 	D2D1_RECT_F midRect = D2D1::RectF(-10, -10, EnemyAni->m_DstRect.right + 10, EnemyAni->m_DstRect.bottom + 10);
 	D2D1_RECT_F maxRect = D2D1::RectF(-300, -300, EnemyAni->m_DstRect.right + 300, EnemyAni->m_DstRect.bottom + 300);
 	
-	D2DRender::GetRenderTarget()->DrawRectangle(&midRect, D2DRender::GetID2D1SolidColorBrush());
-	D2DRender::GetRenderTarget()->DrawRectangle(&maxRect, D2DRender::GetID2D1SolidColorBrush());
+	//D2DRender::GetRenderTarget()->DrawRectangle(&midRect, D2DRender::GetID2D1SolidColorBrush());
+	//D2DRender::GetRenderTarget()->DrawRectangle(&maxRect, D2DRender::GetID2D1SolidColorBrush());
 
 	D2DRender::GetRenderTarget()->SetTransform(D2D1::IdentityMatrix());
 

@@ -75,6 +75,12 @@
     <ClInclude Include="TimeManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\새 폴더\Debug.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -135,6 +141,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="TimeManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

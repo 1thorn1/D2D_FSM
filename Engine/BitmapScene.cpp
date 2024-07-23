@@ -75,9 +75,12 @@ void BitmapScene::Update()
 void BitmapScene::Render()
 {
 	D2D_SIZE_F size = m_pBitmap->GetSize();
-	D2D_MATRIX_3X2_F center = D2D1::Matrix3x2F::Translation(size.width / 2, size.height / 2);
-	D2D1InvertMatrix(&center);
-	D2DRender::GetRenderTarget()->SetTransform(center * this->m_WorldTransform);
+	//D2D_MATRIX_3X2_F center = D2D1::Matrix3x2F::Translation(size.width / 2, size.height / 2);
+	//D2D1InvertMatrix(&center);
+	//D2DRender::GetRenderTarget()->SetTransform(center * this->m_WorldTransform);
+	D2DRender::GetRenderTarget()->SetTransform(this->m_WorldTransform);
 	D2DRender::GetRenderTarget()->DrawBitmap(this->m_pBitmap);
+	D2D1_RECT_F Rect = D2D1::RectF(0, 0, size.width, size.height);
+	D2DRender::GetRenderTarget()->DrawRectangle(&Rect, D2DRender::GetID2D1SolidColorBrush());
 	D2DRender::GetRenderTarget()->SetTransform(D2D1::Matrix3x2F::Identity()); // 변환 초기화
-} 
+}
