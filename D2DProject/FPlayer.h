@@ -1,8 +1,5 @@
 #pragma once
 #include "DemoApp.h"
-#include "Attack.h"
-#include "FDRun.h"
-#include "Jump.h"
 
 class FPlayer
 	: public GameObject

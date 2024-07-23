@@ -4,6 +4,8 @@ class InputManager
 {
 public:
 	bool IsKeyDown(int VKCode) { return GetAsyncKeyState(VKCode) & 0x8000; }
+	bool IsKeyUp(int VKCode) { return !(GetAsyncKeyState(VKCode) & 0x8000); }
+	bool IsKeyHold(int VKCode) { return (GetAsyncKeyState(VKCode) & 0x8000) != 0; }
 };
 
 // °´Ã¼ ¸¸µé±â

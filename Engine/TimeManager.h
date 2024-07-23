@@ -1,20 +1,20 @@
 #pragma once
 
-class TimeManager
-{
-public:
-	TimeManager() : previousTime(std::chrono::high_resolution_clock::now()) {}
-
-	void Update() {
-		auto currentTime = std::chrono::high_resolution_clock::now();
-		std::chrono::duration<float> deltaTimeDuration = currentTime - previousTime;
-		deltaTime = deltaTimeDuration.count();
-		previousTime = currentTime;
-	}
-
-	float GetDeltaTime() const { return deltaTime; }
-
+class TimeManager {
 private:
-	std::chrono::high_resolution_clock::time_point previousTime;
-	float deltaTime;
+    static std::chrono::high_resolution_clock::time_point previousTime;
+    static float deltaTime;
+
+public:
+    TimeManager() {
+        // Initialize the static member variables only once
+        if (previousTime == std::chrono::high_resolution_clock::time_point()) {
+            previousTime = std::chrono::high_resolution_clock::now();
+            deltaTime = 0.0f;
+        }
+    }
+
+    static void Update();
+
+    static float GetDeltaTime() { return deltaTime; }
 };

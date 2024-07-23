@@ -83,6 +83,7 @@ void AnimationScene::Update()
 
 	m_SrcRect = Frame.Source;
 	m_DstRect = { 0,0,m_SrcRect.right - m_SrcRect.left,m_SrcRect.bottom - m_SrcRect.top };
+	m_Center = Frame.Center;
 
 	if (m_bMirror) //x 축 스케일은 좌우 반전 , Translation 은 출력할 이미지의 원점 정보
 	{
@@ -104,10 +105,10 @@ void AnimationScene::Render()
 		return;
 
 	D2D1_SIZE_F center = D2D1::SizeF((m_SrcRect.right - m_SrcRect.left) / 2, (m_SrcRect.bottom - m_SrcRect.top) / 2);
-
+	
 	D2DRender::GetRenderTarget()->SetTransform(
 		// 중심축을 기준으로 행렬연산을 하기 위해 중심축을 먼저 옮겨줌
-		D2D1::Matrix3x2F::Translation(-center.width, -center.height) *
+		D2D1::Matrix3x2F::Translation(-m_Center.x, -m_Center.y) *
 		// 이미지의 행렬(지금은 Scale만 있음)과 Scene의 행렬을 연산
 		m_ImageTransform * m_WorldTransform
 		// 카메라의 역행렬

@@ -32,25 +32,6 @@ void DemoApp::Initialize(HINSTANCE hInstance)
 	Background1->m_RelativeLocation = { 510,300 };
 	Background1->m_RelativeScale = { 1.65f,1.3f };
 
-	// 삒깿쯖을 생성
-	//clone = tempWorld.CreateGameObject<GameObject>();
-	//AnimationScene* Background2 = clone->CreateComponent<AnimationScene>();
-	//ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/realpikachuuu.png", &Background2->m_pBitmap);
-	//ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DRun.txt", &Background2->m_pAnimationAsset);
-	//Background2->SetAnimation(8, 0);
-	//Background2->m_RelativeScale = { 2.2f,2.2f };
-	//clone->m_pRootScene = Background2;
-
-	// 상대 삒깾쯖을 만들어
-	//clone = tempWorld.CreateGameObject<GameObject>();
-	//AnimationScene* Background3 = clone->CreateComponent<AnimationScene>();
-	//ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/realpikachuuu.png", &Background3->m_pBitmap);
-	//ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DRun.txt", &Background3->m_pAnimationAsset);
-	//Background3->SetAnimation(8, 1);
-	//Background3->m_RelativeLocation = {-600,0};
-	//Background3->m_RelativeScale = { 2.2f,2.2f };
-	//clone->m_pRootScene = Background3;
-
 	// 배구공도 ㅇㅅㅇ
 	//clone = tempWorld.CreateGameObject<GameObject>();
 	//AnimationScene* Background4 = clone->CreateComponent<AnimationScene>();
@@ -119,6 +100,8 @@ void DemoApp::Update()
 {
 	CheckKeyInput();
 	tempWorld.Update();
+	TimeManager::Update();
+
 }
 
 

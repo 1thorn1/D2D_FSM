@@ -1,4 +1,8 @@
 #include "FPlayer.h"
+#include "Attack.h"
+#include "FDRun.h"
+#include "SDRun.h"
+#include "Jump.h"
 
 FPlayer::FPlayer()
 {
@@ -14,6 +18,8 @@ FPlayer::FPlayer()
 	fsm->CreateState<SDRun>("SDRun");
 	fsm->CreateState<Jump>("DJump");
 	fsm->SetCurState("FDRun");
+	\
+
 }
 
 FPlayer::~FPlayer()

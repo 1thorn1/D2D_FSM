@@ -100,6 +100,9 @@
       <Filter>소스 파일\PlayersState</Filter>
     </ClInclude>
     <ClInclude Include="Idle.h">
+      <Filter>소스 파일\PlayersState</Filter>
+    </ClInclude>
+    <ClInclude Include="IPlayerState.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -162,6 +165,9 @@
       <Filter>소스 파일\PlayersState</Filter>
     </ClCompile>
     <ClCompile Include="Idle.cpp">
+      <Filter>소스 파일\PlayersState</Filter>
+    </ClCompile>
+    <ClCompile Include="IPlayerState.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

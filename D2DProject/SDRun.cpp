@@ -18,37 +18,35 @@ void SDRun::Update()
 	{
 		// 점프 실행
 		fsm->SetCurState("DJump");
-
-		if (KeyManager.IsKeyDown(VK_RETURN))
-		{
-			// 세게 치기
-		}
-
 	}
-	if (KeyManager.IsKeyDown(VK_LEFT))
+
+	if (KeyManager.IsKeyHold(VK_LEFT))
 	{
 		// 그냥 현재 애니메이션 재생, 앞으로 이동
 		fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x -= 1;
 		m_pOwner->GetOwner()->GetComponent<AnimationScene>()->m_bMirror = false;
-		if (KeyManager.IsKeyDown(VK_LEFT) && KeyManager.IsKeyDown(VK_RETURN))
-		{
-			// 세이브 모션 취하기
-		}
 
+		// 세이브 모션 취하기
+		if (KeyManager.IsKeyDown(VK_RETURN))
+		{
+		}
 	}
 
-	if (KeyManager.IsKeyDown(VK_RIGHT))
+	if (KeyManager.IsKeyHold(VK_RIGHT))
 	{
 		// 그냥 현재 애니메이션 재생, 뒤으로 이동
 		fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x += 1;
 		m_pOwner->GetOwner()->GetComponent<AnimationScene>()->m_bMirror = true;
-		if (KeyManager.IsKeyDown(VK_RIGHT) && KeyManager.IsKeyDown(VK_RETURN))
+		if (KeyManager.IsKeyDown(VK_RETURN))
 		{
 			// 세이브 모션 취하기
 		}
 	}
 
-	// enter + 방향키 , shift + a,d => save 모션
+	if (!KeyManager.IsKeyHold(VK_LEFT) && !KeyManager.IsKeyHold(VK_RIGHT))
+	{
+		fsm->SetCurState("PIdle");
+	}
 }
 
 void SDRun::Exit()

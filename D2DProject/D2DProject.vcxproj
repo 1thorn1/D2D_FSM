@@ -143,6 +143,7 @@
     <ClInclude Include="Idle.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="IEnemyState.h" />
+    <ClInclude Include="IPlayerState.h" />
     <ClInclude Include="Jump.h" />
     <ClInclude Include="MoveState.h" />
     <ClInclude Include="Player.h" />
@@ -166,6 +167,7 @@
     <ClCompile Include="Idle.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="IEnemyState.cpp" />
+    <ClCompile Include="IPlayerState.cpp" />
     <ClCompile Include="Jump.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveState.cpp" />

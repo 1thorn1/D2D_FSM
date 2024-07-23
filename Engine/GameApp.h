@@ -11,6 +11,7 @@
 #include "FSMState.h"
 #include "GameObject.h"
 #include "FiniteStateMachine.h"
+#include "TimeManager.h"
 
 class GameApp
 {

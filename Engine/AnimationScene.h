@@ -39,6 +39,7 @@ public:
 	int	  m_AnimationIndex = -1;			   // 현재 애니메이션 인덱스
 	D2D1_RECT_F m_SrcRect;					   // D2D1Bitmap의 Source 영역
 	D2D1_RECT_F m_DstRect;					   // RenderTarget의 Destination영역
+	D2D1_VECTOR_2F m_Center;
 
 	bool m_bMirror;							   // 좌우 반전 여부
 	D2D1_MATRIX_3X2_F m_ImageTransform;        // 반대 방향으로 뒤집기 위한 행렬 Scale.x = -0.1f

@@ -1,14 +1,13 @@
 #pragma once
 #include "DemoApp.h"
-#include "Enemy.h"
-#include "FPlayer.h"
+#include "SPlayer.h"
 
-class IEnemyState
-	: public T_FSMState<Enemy>
+class IPlayerState
+	: public T_FSMState<SPlayer>
 {
 
 public:
-	IEnemyState(FiniteStateMachine* pOwner, std::string Name) : T_FSMState(pOwner, Name) {}
+	IPlayerState(FiniteStateMachine* pOwner, std::string Name) : T_FSMState(pOwner, Name) {}
 	virtual void Initialize()
 	{
 		//owner = dynamic_cast<Enemy*>(this->m_pOwner->GetOwner());
