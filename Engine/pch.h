@@ -2,8 +2,8 @@
 
 //미리 컴파일하려는 헤더 추가
 
-#define SCREEN_WIDTH 1600
-#define SCREEN_HEIGH 800
+#define SCREEN_WIDTH 1024
+#define SCREEN_HEIGH 600
 
 #include <iostream>
 #include "framework.h"

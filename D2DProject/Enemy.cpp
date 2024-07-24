@@ -8,7 +8,7 @@ Enemy::Enemy()
 	EnemyAni = GameObject::CreateComponent<AnimationScene>();
 	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/Enemy.png", &EnemyAni->m_pBitmap);
 	//EnemyAni->m_RelativeLocation = { 300 ,200 };
-	Initialize(300, 200, 0.2f);
+	Initialize(-100, -200, 0.2f);
 	SetRootScene(EnemyAni);
 
 	fsm = CreateComponent<FiniteStateMachine>();

@@ -110,9 +110,9 @@ void AnimationScene::Render()
 		// 중심축을 기준으로 행렬연산을 하기 위해 중심축을 먼저 옮겨줌
 		D2D1::Matrix3x2F::Translation(-m_Center.x, -m_Center.y) *
 		// 이미지의 행렬(지금은 Scale만 있음)과 Scene의 행렬을 연산
-		m_ImageTransform * m_WorldTransform
+		m_ImageTransform * m_WorldTransform);
 		// 카메라의 역행렬
-		* dynamic_cast<CameraScene*>(GetOwner()->m_pOwner->mainCamera->m_pRootScene)->m_CameraMatrix); //-> 카메라 중심 기준으로 월드 좌표
+		//* dynamic_cast<CameraScene*>(GetOwner()->m_pOwner->mainCamera->m_pRootScene)->m_CameraMatrix); //-> 카메라 중심 기준으로 월드 좌표
 
 	D2DRender::GetRenderTarget()->DrawBitmap(m_pBitmap, m_DstRect
 		, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, m_SrcRect);

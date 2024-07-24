@@ -63,6 +63,10 @@ bool AnimationAsset::LoadAnimation(std::wstring FilePath)
 	{
 		LoadAnimationFromCSV(11, L"CSV/flag.txt");
 	}
+	if (FilePath == std::wstring(L"CSV/DBall.txt"))
+	{
+		LoadAnimationFromCSV(12, L"CSV/DBall.txt");
+	}
 	return true;
 }
 

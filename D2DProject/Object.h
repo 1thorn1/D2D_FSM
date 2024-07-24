@@ -1,5 +1,6 @@
 #pragma once
 #include "DemoApp.h"
+#include "SPlayer.h"
 
 class Object : public GameObject
 {

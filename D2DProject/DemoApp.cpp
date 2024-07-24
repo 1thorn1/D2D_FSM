@@ -5,11 +5,13 @@
 #include "SPlayer.h"
 #include "Object.h"
 #include "Background.h"
+#include "VBall.h"
 
 Player* DemoApp::m_pPlayer = nullptr;
 
 void DemoApp::Initialize(HINSTANCE hInstance)
 {
+	TimeManager();
 	__super::Initialize(hInstance);
 
 	// 墨皋扼 积己.
@@ -26,17 +28,6 @@ void DemoApp::Initialize(HINSTANCE hInstance)
 	midnight->SetAnimation(0, 0);
 	clone->m_pRootScene = midnight;
 
-
-	// 硅备傍档 しさし
-	//clone = tempWorld.CreateGameObject<GameObject>();
-	//AnimationScene* Background4 = clone->CreateComponent<AnimationScene>();
-	//ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/Vball.png", &Background4->m_pBitmap);
-	//ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DBall.txt", &Background4->m_pAnimationAsset);
-	//Background4->SetAnimation(10, 0);
-	//Background4->m_RelativeLocation = { -500,0 };
-	//Background4->m_RelativeScale = { 1.3f,1.3f };
-	//clone->m_pRootScene = Background4;
-
 	clone = tempWorld.CreateGameObject<Background>();
 	clone = tempWorld.CreateGameObject<Object>();
 
@@ -46,12 +37,13 @@ void DemoApp::Initialize(HINSTANCE hInstance)
 	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/flag.png", &flag->m_pBitmap);
 	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/flag.txt", &flag->m_pAnimationAsset);
 	flag->SetAnimation(11, 0);
-	flag->m_RelativeLocation = { -245-9,-60 };
+	flag->m_RelativeLocation = { 512 + 30 , 300 + 40 };
 	flag->m_RelativeScale = { 2.0f,2.0f };
 	clone->m_pRootScene = flag;
 
 	clone = tempWorld.CreateGameObject<FPlayer>();
 	clone = tempWorld.CreateGameObject<SPlayer>();
+	clone = tempWorld.CreateGameObject<VBall>();
 
 	// 利 积己
 	clone = tempWorld.CreateGameObject<Enemy>();
@@ -98,10 +90,10 @@ void DemoApp::FixedUpdate()
 
 void DemoApp::Update()
 {
+	
+	TimeManager::Update();
 	CheckKeyInput();
 	tempWorld.Update();
-	TimeManager::Update();
-
 }
 
 

@@ -6,7 +6,7 @@ class SPlayer
 {
 public:
 
-	AnimationScene* SPlayerAni;
+	static AnimationScene* SPlayerAni;
 	FiniteStateMachine* fsm;
 
 	SPlayer();

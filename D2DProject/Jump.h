@@ -8,7 +8,6 @@
 class Jump : public IPlayerState, public IAnimationProcesser
 {
 	InputManager KeyManager;
-	TimeManager timeManager;
 
 	float gravityScale;
 	float jumpForce;

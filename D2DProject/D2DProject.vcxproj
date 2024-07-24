@@ -153,6 +153,7 @@
     <ClInclude Include="SDRun.h" />
     <ClInclude Include="SPlayer.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="VBall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Attack.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SDRun.cpp" />
     <ClCompile Include="SPlayer.cpp" />
+    <ClCompile Include="VBall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="D2DProject.rc" />

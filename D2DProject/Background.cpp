@@ -15,7 +15,6 @@ Background::~Background()
 void Background::Initialize()
 {
 	D2D_SIZE_F size = m_Background->GetBitmap()->GetSize();
-	m_Background->GetOwner()->m_BoundBox.m_Extend = { size.width / 10, size.height };
 }
 
 void Background::Update()
