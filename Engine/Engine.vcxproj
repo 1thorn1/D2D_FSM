@@ -144,7 +144,7 @@
     <ClInclude Include="AnimationScene.h" />
     <ClInclude Include="BitmapScene.h" />
     <ClInclude Include="CameraScene.h" />
-    <ClInclude Include="Collider.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="D2DRender.h" />
     <ClInclude Include="D:\새 폴더\Debug.h" />
@@ -169,7 +169,7 @@
     <ClCompile Include="AnimationScene.cpp" />
     <ClCompile Include="BitmapScene.cpp" />
     <ClCompile Include="CameraScene.cpp" />
-    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="D2DRender.cpp" />
     <ClCompile Include="Engine.cpp" />

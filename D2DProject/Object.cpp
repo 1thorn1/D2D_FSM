@@ -1,5 +1,7 @@
 #include "Object.h"
 
+BitmapScene* Object::m_Object = nullptr;
+
 Object::Object()
 {
 	m_Object = GameObject::CreateComponent<BitmapScene>();

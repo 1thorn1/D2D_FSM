@@ -107,6 +107,22 @@ public:
 		return length;
 	}
 
+	float dot(const Vector2F& other) const {
+		return x * other.x + y * other.y;
+	}
+
+	float length() const {
+		return std::sqrt(x * x + y * y);
+	}
+
+	Vector2F normalize() const {
+		float len = length();
+		if (len != 0) {
+			return Vector2F(x / len, y / len);
+		}
+		return Vector2F(0, 0);
+	}
+
 };
 
 //

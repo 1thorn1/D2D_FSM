@@ -83,7 +83,6 @@ void GameApp::Run()
 		}
 		else
 		{
-            Collider_BTOB::Update();
 			Update();
 			Render();
 		}
