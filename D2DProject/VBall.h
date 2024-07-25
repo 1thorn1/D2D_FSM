@@ -19,8 +19,8 @@ public:
 	VBall();
 	virtual ~VBall();
 	
-	bool CheckCollision();
-	void ResolveCollision();
+	bool CheckCollision(Vector2F& location, float radius);
+	void ResolveCollision(Vector2F& location, Vector2F& velocity, float radius);
 
 	virtual void Initialize();
 	virtual void Update();

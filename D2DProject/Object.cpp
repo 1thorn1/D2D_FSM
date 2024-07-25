@@ -1,6 +1,7 @@
 #include "Object.h"
 
 BitmapScene* Object::m_Object = nullptr;
+Vector2F     Object::ob_velocity = { 0.0f,0.0f };
 
 Object::Object()
 {
