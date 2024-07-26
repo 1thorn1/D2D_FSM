@@ -45,7 +45,7 @@ void VBall::ResolveCollision(Vector2F& location, Vector2F& velocity, float radiu
 	}
 
 	// 반사계수라네요?
-	float e = 0.7f;
+	float e = 0.3f;
 
 	float j = -(1 + e) * VelocityAlongNormal; // 반사계수 적용
 	// 반사계수 적용
@@ -104,35 +104,35 @@ void VBall::Update()
 	if (m_Ball->m_RelativeLocation.x + m_Ball->m_DstRect.bottom * 0.5 > SCREEN_WIDTH)
 	{
 		m_Ball->m_RelativeLocation.x = SCREEN_WIDTH - m_Ball->m_DstRect.bottom * 0.5;
-		vb_velocity.x *= -0.8f;
+		vb_velocity.x *= -0.5f;
 	}
 
 	// 왼쪽 벽을 못나가게 막아줬음
 	if (m_Ball->m_RelativeLocation.x - m_Ball->m_DstRect.bottom * 0.5 < 0)
 	{
 		m_Ball->m_RelativeLocation.x = 0 + m_Ball->m_DstRect.bottom * 0.5;
-		vb_velocity.x *= -0.8f;
+		vb_velocity.x *= -0.5f;
 	}
 	// 땅에 닿을 때 처리
 	if (m_Ball->m_RelativeLocation.y >= 500 - m_Ball->m_DstRect.right * 0.5)
 	{
 		m_Ball->m_RelativeLocation.y = 500 - m_Ball->m_DstRect.bottom;
-		vb_velocity.y *= -0.8f;
+		vb_velocity.y *= -0.5f;
 	}
 	// 위쪽 벽을 못나가게 막아줬음
 	if (m_Ball->m_RelativeLocation.y <= 0 + m_Ball->m_DstRect.bottom * 0.5)
 	{
-		m_Ball->m_RelativeLocation.y = 10 + m_Ball->m_DstRect.bottom;
-		vb_velocity.y *= -0.8f;
+		m_Ball->m_RelativeLocation.y = 1 + m_Ball->m_DstRect.bottom;
+		vb_velocity.y *= -0.5f;
 	}
 
-	if (CheckCollision(GameManager::p2->SPlayerAni->m_RelativeLocation, GameManager::p2->SPlayerAni->m_DstRect.bottom))
-	{
-		ResolveCollision(GameManager::p2->SPlayerAni->m_RelativeLocation, SPlayer::sp_velocity, GameManager::p2->SPlayerAni->m_DstRect.bottom);
-	}
 	if (CheckCollision(GameManager::p1->SPlayerAni->m_RelativeLocation, GameManager::p1->SPlayerAni->m_DstRect.bottom))
 	{
 		ResolveCollision(GameManager::p1->SPlayerAni->m_RelativeLocation, SPlayer::sp_velocity, GameManager::p1->SPlayerAni->m_DstRect.bottom);
+	}
+	if (CheckCollision(GameManager::p2->SPlayerAni->m_RelativeLocation, GameManager::p2->SPlayerAni->m_DstRect.bottom))
+	{
+		ResolveCollision(GameManager::p2->SPlayerAni->m_RelativeLocation, SPlayer::sp_velocity, GameManager::p2->SPlayerAni->m_DstRect.bottom);
 	}
 
 }

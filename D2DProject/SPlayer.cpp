@@ -47,7 +47,7 @@ void SPlayer::Update()
 	}
 	else if (SPlayerAni->m_RelativeLocation.x <= GameManager::wall->m_Object->m_RelativeLocation.x - 9)
 	{
-		if (SPlayerAni->m_RelativeLocation.x + SPlayerAni->m_DstRect.bottom * 0.5 < 0)
+		if (SPlayerAni->m_RelativeLocation.x - SPlayerAni->m_DstRect.bottom * 0.5 < 0)
 		{
 			SPlayerAni->m_RelativeLocation.x = 0 + SPlayerAni->m_DstRect.bottom * 0.5;
 		}

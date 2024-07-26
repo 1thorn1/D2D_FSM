@@ -3,15 +3,15 @@
 
 void Jump::Initialize()
 {
-	this->gravityScale = 200.f;
-	this->jumpForce = 200.f;
-	this->velocity = 0.0f;
-	this->isJumping = false;
+	gravityScale = 300.f;
+	jumpForce = 200.f;
+	velocity = 0.0f;
+	isJumping = false;
 }
 
 void Jump::Enter()
 {
-	velocity = -jumpForce;
+	velocity = -1.5 * jumpForce;
 	isJumping = false;
 
 	AnimationScene* DRunAni;
@@ -26,6 +26,7 @@ void Jump::Update()
 	// jump 애니메이션 지속 재생 -> 땅에 떨어질 때 까지
 	// 점프 애니메이션이 끝나면 idle or jump 상태로 변경
 	// 공의 콜라이더와 플레이어의 콜라이더가 닿으면 Attack 모션으로 변경
+	float speed = 200.0f;
 	if (KeyManager.IsKeyDown(owner->input.up))
 	{
 		if (KeyManager.IsKeyDown(VK_RETURN))
@@ -34,11 +35,11 @@ void Jump::Update()
 		}
 		if (KeyManager.IsKeyDown(owner->input.right))
 		{
-			fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x += 1;
+			fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x += 1 * speed * TimeManager::GetDeltaTime();
 		}
 		if (KeyManager.IsKeyDown(owner->input.left))
 		{
-			fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x -= 1;
+			fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x -= 1 * speed * TimeManager::GetDeltaTime();
 		}
 	}
 	velocity += gravityScale * TimeManager::GetDeltaTime();
@@ -51,7 +52,14 @@ void Jump::Update()
 	}
 	else
 	{
-		Debug.Log("틀림");
+		if (KeyManager.IsKeyDown(owner->input.right))
+		{
+			fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x += 1;
+		}
+		if (KeyManager.IsKeyDown(owner->input.left))
+		{
+			fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x -= 1;
+		}
 	}
 
 }

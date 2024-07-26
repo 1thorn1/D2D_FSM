@@ -1,4 +1,5 @@
 #pragma once
+#include "DemoApp.h"
 #include "IPlayerState.h"
 #include "SPlayer.h"
 

@@ -37,9 +37,9 @@ void DemoApp::Initialize(HINSTANCE hInstance)
 	GameManager::p2 = tempWorld.CreateGameObject<SPlayer>();
 	GameManager::p1->Initialize();
 
-	GameManager::p1->input.down = 'S';
 	GameManager::p1->input.up = 'W';
 	GameManager::p1->input.left = 'A';
+	GameManager::p1->input.down = 'S';
 	GameManager::p1->input.right = 'D';
 
 	clone = tempWorld.CreateGameObject<VBall>();
