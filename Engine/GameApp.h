@@ -13,7 +13,6 @@
 #include "FiniteStateMachine.h"
 #include "TimeManager.h"
 #include "Debug.h"
-#include "Collider.h"
 
 class GameApp
 {

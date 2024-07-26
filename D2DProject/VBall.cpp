@@ -13,7 +13,6 @@ VBall::VBall()
 	m_Ball->m_RelativeScale = { 1.8f,1.8f };
 
 	position = 0.0f;
-	//velocity = -boundForce;
 	isBound = false;
 	Initialize();
 }
@@ -22,30 +21,114 @@ VBall::~VBall()
 {
 }
 
+bool VBall::CheckCollision(Vector2F& location, float radius)
+{
+	Vector2F diff = m_Ball->m_RelativeLocation - location;
+	float distance = diff.length();
+	return distance < (m_Ball->m_DstRect.bottom * 0.5 + radius);
+}
+
+void VBall::ResolveCollision(Vector2F& location, Vector2F& velocity, float radius)
+{
+	// 방향벡터 정규화
+	Vector2F CollisionNormal = (m_Ball->m_RelativeLocation - location).normalize();
+	// 힘구하기?
+	Vector2F RelativeVelocity = vb_velocity - velocity;
+
+	float VelocityAlongNormal = RelativeVelocity.dot(CollisionNormal);
+
+	if (VelocityAlongNormal > 0)
+	{
+		return;
+	}
+
+	// 반사계수라네요?
+	float e = 0.7f;
+
+	float j = -(1 + e) * VelocityAlongNormal; // 반사계수 적용
+	// 반사계수 적용
+	//j /= (1 / (m_Ball->m_DstRect.bottom * 0.5) + 1 / (SPlayer::SPlayerAni->m_DstRect.bottom * 0.5));
+
+	Vector2F impulse = CollisionNormal * j;
+	vb_velocity += impulse * (1 / (m_Ball->m_DstRect.bottom * 0.5));
+	velocity += impulse * (1 / (radius * 0.5));
+}
+
 void VBall::Initialize()
 {
 	this->gravityScale = 200.f;
-	this->boundForce = 200.f;
-	//this->velocity = 100.0f;
-	this->isBound = false;
 }
 
 void VBall::Update()
 {
 	__super::Update();
 	float time = TimeManager::GetDeltaTime();
-	velocity.y += gravityScale * time;
-	m_Ball->GetOwner()->m_pRootScene->m_RelativeLocation += velocity * TimeManager::GetDeltaTime();
 
+	vb_velocity.y += gravityScale * time;
+	m_Ball->GetOwner()->m_pRootScene->m_RelativeLocation += vb_velocity * time;
 
-		// 중력받아서 떨어짐
-	//m_Ball->GetOwner()->m_pRootScene->m_RelativeLocation += ;
-	
-	// 튕겨서 바닥에 닿았을 때의 반사벡터 구해주기
-	if (m_Ball->GetOwner()->m_pRootScene->m_RelativeLocation.y >= 500)
+	// 땅에 닿을 때 처리
+	if (m_Ball->m_RelativeLocation.y >= 500 - m_Ball->m_DstRect.right * 0.5)
 	{
-		velocity.y *= -1.f;
+		vb_velocity.y *= -0.8f;
 	}
+
+	// 네트의 왼쪽 x좌표와 네트의 위쪽 y축까지만 충돌처리 해줌
+	if (m_Ball->m_RelativeLocation.y + m_Ball->m_DstRect.right * 0.5 >= 272)
+	{
+		// 네트의 오른쪽 x좌표와 네트의 위쪽 y축까지만 충돌처리 해줌
+		if (m_Ball->m_RelativeLocation.x - m_Ball->m_DstRect.right * 0.5
+			<= Object::m_Object->m_RelativeLocation.x + 9
+			&& m_Ball->m_RelativeLocation.x
+			>= Object::m_Object->m_RelativeLocation.x + 9)
+		{
+			Debug.Log("오");
+			m_Ball->m_RelativeLocation.x
+				= Object::m_Object->m_RelativeLocation.x + 9 + m_Ball->m_DstRect.bottom;
+			vb_velocity.x *= -0.8f;
+		}
+
+		// 네트의 왼쪽 x좌표와 네트의 위쪽 y축까지만 충돌처리 해줌
+		if (m_Ball->m_RelativeLocation.x + m_Ball->m_DstRect.right * 0.5
+			>= Object::m_Object->m_RelativeLocation.x - 9
+			&& m_Ball->m_RelativeLocation.x
+			<= Object::m_Object->m_RelativeLocation.x - 9)
+		{
+			Debug.Log("왼");
+			m_Ball->m_RelativeLocation.x
+				= Object::m_Object->m_RelativeLocation.x - 9 - m_Ball->m_DstRect.bottom;
+			vb_velocity.x *= -0.8f;
+		}
+	}
+
+
+	// 오른쪽 벽을 못나가게 막아줬음
+	if (m_Ball->m_RelativeLocation.x + m_Ball->m_DstRect.bottom * 0.5 > SCREEN_WIDTH)
+	{
+		m_Ball->m_RelativeLocation.x = SCREEN_WIDTH - m_Ball->m_DstRect.bottom * 0.5;
+		vb_velocity.x *= -0.8f;
+	}
+
+	// 왼쪽 벽을 못나가게 막아줬음
+	if (m_Ball->m_RelativeLocation.x - m_Ball->m_DstRect.bottom * 0.5 < 0)
+	{
+		m_Ball->m_RelativeLocation.x = 0 + m_Ball->m_DstRect.bottom * 0.5;
+		vb_velocity.x *= -0.8f;
+	}
+
+	// 위쪽 벽을 못나가게 막아줬음
+	if (m_Ball->m_RelativeLocation.y <= 0 + m_Ball->m_DstRect.bottom * 0.5)
+	{
+		vb_velocity.y *= -0.8f;
+	}
+
+
+	if (CheckCollision(SPlayer::SPlayerAni->m_RelativeLocation, SPlayer::SPlayerAni->m_DstRect.bottom))
+	{
+		ResolveCollision(SPlayer::SPlayerAni->m_RelativeLocation, SPlayer::sp_velocity, SPlayer::SPlayerAni->m_DstRect.bottom);
+	}
+
+
 }
 
 void VBall::Render()

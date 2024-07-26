@@ -4,6 +4,7 @@
 #include "Attack.h"
 #include "Jump.h"
 AnimationScene* SPlayer::SPlayerAni = nullptr;
+Vector2F SPlayer::sp_velocity(0.0f, 0.0f);
 
 SPlayer::SPlayer()
 {
@@ -41,6 +42,6 @@ void SPlayer::Update()
 }
 
 void SPlayer::Render()
-{
+{   
 	__super::Render();
 }

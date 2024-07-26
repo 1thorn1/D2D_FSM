@@ -1,6 +1,7 @@
 #pragma once
 #include "DemoApp.h"
 #include "SPlayer.h"
+#include "Object.h"
 
 class VBall : public GameObject
 {
@@ -12,11 +13,14 @@ public:
 	float position;
 	//float velocity;
 	bool isBound;
-	Vector2F velocity;
+	Vector2F vb_velocity;
 
 
 	VBall();
 	virtual ~VBall();
+	
+	bool CheckCollision(Vector2F& location, float radius);
+	void ResolveCollision(Vector2F& location, Vector2F& velocity, float radius);
 
 	virtual void Initialize();
 	virtual void Update();

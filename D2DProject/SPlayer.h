@@ -6,6 +6,7 @@ class SPlayer
 {
 public:
 
+	static Vector2F sp_velocity;
 	static AnimationScene* SPlayerAni;
 	FiniteStateMachine* fsm;
 

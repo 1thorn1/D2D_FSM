@@ -1,13 +1,12 @@
 #pragma once
 #include "GameObject.h"
 
-
 class World
 {
 public:
 	World();
 	virtual ~World();
-
+	
 	std::list<GameObject*> m_GameObjects; // 게임 오브젝트 담기
 	
 	int count = 0; // 컬링되지 않고 카메라에 출력되는 오브젝트 수

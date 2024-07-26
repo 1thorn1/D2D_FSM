@@ -6,7 +6,8 @@ class Object : public GameObject
 {
 public:
 
-	BitmapScene* m_Object;
+	static BitmapScene* m_Object;
+	static Vector2F ob_velocity;
 
 	Object();
 	virtual ~Object();
