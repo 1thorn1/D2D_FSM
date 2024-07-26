@@ -1,4 +1,6 @@
 #include "VBall.h"
+#include "Object.h"
+#include "SPlayer.h"
 
 AnimationScene* VBall::m_Ball = nullptr;
 
@@ -8,7 +10,7 @@ VBall::VBall()
 	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/Vball.png", &m_Ball->m_pBitmap);
 	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DBall.txt", &m_Ball->m_pAnimationAsset);
 	SetRootScene(m_Ball);
-	m_Ball->SetAnimation(12, 0);
+	m_Ball->SetAnimation(5, 0);
 	m_Ball->m_RelativeLocation = { 512 + 200, 600 - 200 };
 	m_Ball->m_RelativeScale = { 1.8f,1.8f };
 
@@ -67,36 +69,32 @@ void VBall::Update()
 	vb_velocity.y += gravityScale * time;
 	m_Ball->GetOwner()->m_pRootScene->m_RelativeLocation += vb_velocity * time;
 
-	// 땅에 닿을 때 처리
-	if (m_Ball->m_RelativeLocation.y >= 500 - m_Ball->m_DstRect.right * 0.5)
-	{
-		vb_velocity.y *= -0.8f;
-	}
-
+	GameManager::wall->m_Object->m_RelativeLocation.x;
+	GameManager::p2->SPlayerAni->m_RelativeLocation;
 	// 네트의 왼쪽 x좌표와 네트의 위쪽 y축까지만 충돌처리 해줌
 	if (m_Ball->m_RelativeLocation.y + m_Ball->m_DstRect.right * 0.5 >= 272)
 	{
 		// 네트의 오른쪽 x좌표와 네트의 위쪽 y축까지만 충돌처리 해줌
 		if (m_Ball->m_RelativeLocation.x - m_Ball->m_DstRect.right * 0.5
-			<= Object::m_Object->m_RelativeLocation.x + 9
+			<= GameManager::wall->m_Object->m_RelativeLocation.x + 9
 			&& m_Ball->m_RelativeLocation.x
-			>= Object::m_Object->m_RelativeLocation.x + 9)
+			>= GameManager::wall->m_Object->m_RelativeLocation.x + 9)
 		{
 			Debug.Log("오");
 			m_Ball->m_RelativeLocation.x
-				= Object::m_Object->m_RelativeLocation.x + 9 + m_Ball->m_DstRect.bottom;
+				= GameManager::wall->m_Object->m_RelativeLocation.x + 9 + m_Ball->m_DstRect.bottom;
 			vb_velocity.x *= -0.8f;
 		}
 
 		// 네트의 왼쪽 x좌표와 네트의 위쪽 y축까지만 충돌처리 해줌
 		if (m_Ball->m_RelativeLocation.x + m_Ball->m_DstRect.right * 0.5
-			>= Object::m_Object->m_RelativeLocation.x - 9
+			>= GameManager::wall->m_Object->m_RelativeLocation.x - 9
 			&& m_Ball->m_RelativeLocation.x
-			<= Object::m_Object->m_RelativeLocation.x - 9)
+			<= GameManager::wall->m_Object->m_RelativeLocation.x - 9)
 		{
 			Debug.Log("왼");
 			m_Ball->m_RelativeLocation.x
-				= Object::m_Object->m_RelativeLocation.x - 9 - m_Ball->m_DstRect.bottom;
+				= GameManager::wall->m_Object->m_RelativeLocation.x - 9 - m_Ball->m_DstRect.bottom;
 			vb_velocity.x *= -0.8f;
 		}
 	}
@@ -115,19 +113,27 @@ void VBall::Update()
 		m_Ball->m_RelativeLocation.x = 0 + m_Ball->m_DstRect.bottom * 0.5;
 		vb_velocity.x *= -0.8f;
 	}
-
+	// 땅에 닿을 때 처리
+	if (m_Ball->m_RelativeLocation.y >= 500 - m_Ball->m_DstRect.right * 0.5)
+	{
+		m_Ball->m_RelativeLocation.y = 500 - m_Ball->m_DstRect.bottom;
+		vb_velocity.y *= -0.8f;
+	}
 	// 위쪽 벽을 못나가게 막아줬음
 	if (m_Ball->m_RelativeLocation.y <= 0 + m_Ball->m_DstRect.bottom * 0.5)
 	{
+		m_Ball->m_RelativeLocation.y = 10 + m_Ball->m_DstRect.bottom;
 		vb_velocity.y *= -0.8f;
 	}
 
-
-	if (CheckCollision(SPlayer::SPlayerAni->m_RelativeLocation, SPlayer::SPlayerAni->m_DstRect.bottom))
+	if (CheckCollision(GameManager::p2->SPlayerAni->m_RelativeLocation, GameManager::p2->SPlayerAni->m_DstRect.bottom))
 	{
-		ResolveCollision(SPlayer::SPlayerAni->m_RelativeLocation, SPlayer::sp_velocity, SPlayer::SPlayerAni->m_DstRect.bottom);
+		ResolveCollision(GameManager::p2->SPlayerAni->m_RelativeLocation, SPlayer::sp_velocity, GameManager::p2->SPlayerAni->m_DstRect.bottom);
 	}
-
+	if (CheckCollision(GameManager::p1->SPlayerAni->m_RelativeLocation, GameManager::p1->SPlayerAni->m_DstRect.bottom))
+	{
+		ResolveCollision(GameManager::p1->SPlayerAni->m_RelativeLocation, SPlayer::sp_velocity, GameManager::p1->SPlayerAni->m_DstRect.bottom);
+	}
 
 }
 

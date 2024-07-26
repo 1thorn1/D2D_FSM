@@ -7,65 +7,32 @@ bool AnimationAsset::LoadAnimation(std::wstring FilePath)
 {
 	//텍스트 파일을 열어서 csv파일 목록을 읽어온다.
 	// 아래 함수로 csv파일을 처리한다.
-	if (FilePath == std::wstring(L"CSV/midnight.txt"))
-	{
-		// 배경의 CSV 열기
-		LoadAnimationFromCSV(0, L"CSV/midnight.txt");
-	}
-
-	// 플레이어의 CSV 열기
-	if (FilePath == std::wstring(L"CSV/KenIdle.txt"))
-	{
-		LoadAnimationFromCSV(1, L"CSV/KenIdle.txt");
-	}
-	if (FilePath == std::wstring(L"CSV/KenAttack.txt"))
-	{
-		LoadAnimationFromCSV(2, L"CSV/KenAttack.txt");
-	}
-	if (FilePath == std::wstring(L"CSV/KenMove.txt"))
-	{
-		LoadAnimationFromCSV(3, L"CSV/KenMove.txt");
-	}
-
-	// 적의 CSV 열기
-	if (FilePath == std::wstring(L"CSV/EIdle.txt"))
-	{
-		LoadAnimationFromCSV(4, L"CSV/EIdle.txt");
-	}
-	if (FilePath == std::wstring(L"CSV/EAttack.txt"))
-	{
-		LoadAnimationFromCSV(5, L"CSV/EAttack.txt");
-	}
-	if (FilePath == std::wstring(L"CSV/EMove.txt"))
-	{
-		LoadAnimationFromCSV(6, L"CSV/EMove.txt");
-	}
-
 	// 삒껫쯖의 CSV 열기
 	if (FilePath == std::wstring(L"CSV/Attack.txt"))
 	{
-		LoadAnimationFromCSV(7, L"CSV/Attack.txt");
+		LoadAnimationFromCSV(0, L"CSV/Attack.txt");
 	}
 	if (FilePath == std::wstring(L"CSV/DRun.txt"))
 	{
-		LoadAnimationFromCSV(8, L"CSV/DRun.txt");
+		LoadAnimationFromCSV(1, L"CSV/DRun.txt");
 	}
 	if (FilePath == std::wstring(L"CSV/Jump.txt"))
 	{
-		LoadAnimationFromCSV(9, L"CSV/Jump.txt");
+		LoadAnimationFromCSV(2, L"CSV/Jump.txt");
 	}
 	if (FilePath == std::wstring(L"CSV/Idle.txt"))
 	{
-		LoadAnimationFromCSV(10, L"CSV/Idle.txt");
+		LoadAnimationFromCSV(3, L"CSV/Idle.txt");
 	}
 
+	// 오브젝트들
 	if (FilePath == std::wstring(L"CSV/flag.txt"))
 	{
-		LoadAnimationFromCSV(11, L"CSV/flag.txt");
+		LoadAnimationFromCSV(4, L"CSV/flag.txt");
 	}
 	if (FilePath == std::wstring(L"CSV/DBall.txt"))
 	{
-		LoadAnimationFromCSV(12, L"CSV/DBall.txt");
+		LoadAnimationFromCSV(5, L"CSV/DBall.txt");
 	}
 	return true;
 }

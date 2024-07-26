@@ -1,12 +1,12 @@
 #pragma once
 #include "DemoApp.h"
-#include "SPlayer.h"
+#include "GameManager.h"
 
 class Object : public GameObject
 {
 public:
 
-	static BitmapScene* m_Object;
+	BitmapScene* m_Object;
 	static Vector2F ob_velocity;
 
 	Object();

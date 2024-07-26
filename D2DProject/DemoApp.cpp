@@ -1,11 +1,9 @@
 #include "DemoApp.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "FPlayer.h"
-#include "SPlayer.h"
 #include "Object.h"
+#include "SPlayer.h"
 #include "Background.h"
 #include "VBall.h"
+#include "GameManager.h"
 
 Player* DemoApp::m_pPlayer = nullptr;
 
@@ -20,36 +18,31 @@ void DemoApp::Initialize(HINSTANCE hInstance)
 	clone->m_pRootScene = clone->CreateComponent<CameraScene>();
 	tempWorld.mainCamera = clone; // 메인카메라 설정 잊지말기!
 
-	//백그라운드 생성 -> 함수로 만들겠음
-	clone = tempWorld.CreateGameObject<GameObject>();
-	AnimationScene* midnight = clone->CreateComponent<AnimationScene>();
-	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/midnight.png", &midnight->m_pBitmap);
-	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/midnight.txt", &midnight->m_pAnimationAsset);
-	midnight->SetAnimation(0, 0);
-	clone->m_pRootScene = midnight;
-
 	clone = tempWorld.CreateGameObject<Background>();
-	clone = tempWorld.CreateGameObject<Object>();
+	GameManager::wall = tempWorld.CreateGameObject<Object>();
 
 	// 깃발
 	clone = tempWorld.CreateGameObject<GameObject>();
 	AnimationScene* flag = clone->CreateComponent<AnimationScene>();
 	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/flag.png", &flag->m_pBitmap);
 	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/flag.txt", &flag->m_pAnimationAsset);
-	flag->SetAnimation(11, 0);
+	flag->SetAnimation(4, 0);
 	flag->m_RelativeLocation = { 512 + 30 , 300 + 40 };
 	flag->m_RelativeScale = { 2.0f,2.0f };
 	clone->m_pRootScene = flag;
 
-	clone = tempWorld.CreateGameObject<FPlayer>();
-	clone = tempWorld.CreateGameObject<SPlayer>();
+
+	// 플레이어 1,2를 생성함
+	GameManager::p1 = tempWorld.CreateGameObject<SPlayer>();
+	GameManager::p2 = tempWorld.CreateGameObject<SPlayer>();
+	GameManager::p1->Initialize();
+
+	GameManager::p1->input.down = 'S';
+	GameManager::p1->input.up = 'W';
+	GameManager::p1->input.left = 'A';
+	GameManager::p1->input.right = 'D';
+
 	clone = tempWorld.CreateGameObject<VBall>();
-
-	// 적 생성
-	clone = tempWorld.CreateGameObject<Enemy>();
-
-	// 플레이어 생성
-	m_pPlayer = tempWorld.CreateGameObject<Player>();
 }
 
 void DemoApp::CheckKeyInput()
@@ -90,7 +83,7 @@ void DemoApp::FixedUpdate()
 
 void DemoApp::Update()
 {
-	
+
 	TimeManager::Update();
 	CheckKeyInput();
 	tempWorld.Update();

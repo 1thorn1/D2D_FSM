@@ -1,7 +1,6 @@
 #pragma once
 #include "DemoApp.h"
 #include "IPlayerState.h"
-#include "FPlayer.h"
 #include "SPlayer.h"
 
 // 삒깻쯖이 점프를 할 때 모션

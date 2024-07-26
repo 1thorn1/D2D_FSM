@@ -1,5 +1,6 @@
 #pragma once
 #include "DemoApp.h"
+#include "GameManager.h"
 
 class SPlayer
 	: public GameObject
@@ -7,8 +8,10 @@ class SPlayer
 public:
 
 	static Vector2F sp_velocity;
-	static AnimationScene* SPlayerAni;
+	AnimationScene* SPlayerAni;
 	FiniteStateMachine* fsm;
+
+	CustomInput input;
 
 	SPlayer();
 	virtual ~SPlayer();

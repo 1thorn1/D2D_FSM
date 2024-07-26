@@ -1,6 +1,6 @@
 #include "Object.h"
+#include "SPlayer.h"
 
-BitmapScene* Object::m_Object = nullptr;
 Vector2F     Object::ob_velocity = { 0.0f,0.0f };
 
 Object::Object()
@@ -26,14 +26,24 @@ void Object::Update()
 	__super::Update();
 	// 막대 오브젝트의 x 좌표 >= 플레이어 애니메이션 x좌표 - 플레이어 애니메이션 너비이면,
 	// 플레이어 모션이 x 좌표보다 작아지지 못하게 하기
-	if (m_Object->m_RelativeLocation.x + 18 + SPlayer::SPlayerAni->m_DstRect.bottom * 0.5
-		> SPlayer::SPlayerAni->m_RelativeLocation.x)
+	if (m_Object->m_RelativeLocation.x + 18 + GameManager::p2->SPlayerAni->m_DstRect.bottom * 0.5
+		> GameManager::p2->SPlayerAni->m_RelativeLocation.x)
 	{
 		Debug.Log("m_Object->m_RelativeLocation.x: "
-			+ std::to_string(SPlayer::SPlayerAni->m_RelativeLocation.x));
-		SPlayer::SPlayerAni->m_RelativeLocation.x
-			= m_Object->m_RelativeLocation.x + 18 + SPlayer::SPlayerAni->m_DstRect.bottom * 0.5;
+			+ std::to_string(GameManager::p2->SPlayerAni->m_RelativeLocation.x));
+		GameManager::p2->SPlayerAni->m_RelativeLocation.x
+			= m_Object->m_RelativeLocation.x + 18 + GameManager::p2->SPlayerAni->m_DstRect.bottom * 0.5;
 	}
+	else if (m_Object->m_RelativeLocation.x - 18 - GameManager::p1->SPlayerAni->m_DstRect.bottom * 0.5
+		< GameManager::p1->SPlayerAni->m_RelativeLocation.x)
+	{
+		Debug.Log("m_Object->m_RelativeLocation.x: "
+			+ std::to_string(GameManager::p1->SPlayerAni->m_RelativeLocation.x));
+		GameManager::p1->SPlayerAni->m_RelativeLocation.x
+			= m_Object->m_RelativeLocation.x - 18 - GameManager::p1->SPlayerAni->m_DstRect.bottom * 0.5;
+	}
+
+
 
 }
 
