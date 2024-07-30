@@ -6,3 +6,4 @@
 SPlayer* GameManager::p1;
 SPlayer* GameManager::p2;
 Object* GameManager::wall;
+

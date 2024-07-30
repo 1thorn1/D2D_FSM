@@ -47,7 +47,7 @@ BOOL D2DRender::InitDirect2D(HWND m_hWnd)
 
 	if (SUCCEEDED(hr))
 	{
-		hr = m_pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Green), &m_pBrush);
+		hr = m_pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Black), &m_pBrush);
 	}
 
 	if (SUCCEEDED(hr))
@@ -69,17 +69,30 @@ BOOL D2DRender::InitDirect2D(HWND m_hWnd)
 			__uuidof(m_pDWriteFactory),
 			reinterpret_cast<IUnknown**>(&m_pDWriteFactory));
 	}
-	if (SUCCEEDED(hr))
-	{
-		// DirectWrite 텍스트 형식 개체를 만듭니다.
+	//if (SUCCEEDED(hr))
+	//{
+	//	// DirectWrite 텍스트 형식 개체를 만듭니다.
+	//	hr = m_pDWriteFactory->CreateTextFormat(
+	//		L"", // FontName    제어판-모든제어판-항목-글꼴-클릭 으로 글꼴이름 확인가능
+	//		NULL,
+	//		DWRITE_FONT_WEIGHT_NORMAL,
+	//		DWRITE_FONT_STYLE_NORMAL,
+	//		DWRITE_FONT_STRETCH_NORMAL,
+	//		15.0f,   // Font Size
+	//		L"", //locale
+	//		&m_pDWriteTextFormat
+	//	);
+	//}
+
+	if (SUCCEEDED(hr)) {
 		hr = m_pDWriteFactory->CreateTextFormat(
-			L"", // FontName    제어판-모든제어판-항목-글꼴-클릭 으로 글꼴이름 확인가능
-			NULL,
-			DWRITE_FONT_WEIGHT_NORMAL,
-			DWRITE_FONT_STYLE_NORMAL,
-			DWRITE_FONT_STRETCH_NORMAL,
-			15.0f,   // Font Size
-			L"", //locale
+			 L"Segoe UI", // 폰트 이름
+            nullptr,
+            DWRITE_FONT_WEIGHT_BOLD, // 두꺼운 폰트
+            DWRITE_FONT_STYLE_ITALIC, // 기울어진 스타일
+            DWRITE_FONT_STRETCH_NORMAL, // 기본 스트레치
+            36.0f, // 폰트 크기
+            L"en-us", // 로케일
 			&m_pDWriteTextFormat
 		);
 	}

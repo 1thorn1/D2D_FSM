@@ -5,11 +5,10 @@
 #include "Idle.h"
 #include "Attack.h"
 #include "Jump.h"
-Vector2F SPlayer::sp_velocity(0.0f, 0.0f);
+Vector2F SPlayer::sp_velocity(0.0f, 0.0f); // 변수 이름 좀 잘 생각하고 짓자 헷갈림
 
 SPlayer::SPlayer()
 {
-
 	SPlayerAni = CreateComponent<AnimationScene>();
 	ResourceManager::pInstance->CreateD2DBitmapFromFile(L"Asset/realpikachuuu.png", &SPlayerAni->m_pBitmap);
 	SetRootScene(SPlayerAni);

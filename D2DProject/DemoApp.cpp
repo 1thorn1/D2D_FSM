@@ -41,6 +41,7 @@ void DemoApp::Initialize(HINSTANCE hInstance)
 	GameManager::p1->input.left = 'A';
 	GameManager::p1->input.down = 'S';
 	GameManager::p1->input.right = 'D';
+	GameManager::p1->input.enter = 'V';
 
 	clone = tempWorld.CreateGameObject<VBall>();
 }
@@ -59,22 +60,64 @@ void DemoApp::CheckKeyInput()
 	//}
 }
 
-void DemoApp::PrintUsedVRAM()
+//void DemoApp::PrintUsedVRAM()
+//{
+//	D2DRender::GetRenderTarget()->SetTransform(D2D1::Matrix3x2F::Identity());
+//	D2D1_RECT_F rect1 = { 0,0, 100,100 };
+//	std::wstring Vram = L"VRAM CHECK: " + std::to_wstring(D2DRender::GetUsedVRAM());
+//	D2DRender::GetRenderTarget()->DrawTextW(Vram.c_str(), static_cast<UINT32>(Vram.size()), D2DRender::GetIDWriteTextFormat(), rect1, D2DRender::GetID2D1SolidColorBrush());
+//
+//	D2D1_RECT_F rect2 = { 0,50, 150,300 };
+//	std::wstring key = L"Create : C key, Release: R key, Reverse: <- key";
+//	D2DRender::GetRenderTarget()->DrawTextW(key.c_str(), static_cast<UINT32>(key.size()), D2DRender::GetIDWriteTextFormat(), rect2, D2DRender::GetID2D1SolidColorBrush());
+//
+//	D2D1_RECT_F rect2 = { 0,150, 250,400 };
+//	key = L"Object count : " + std::to_wstring(tempWorld.count);
+//	D2DRender::GetRenderTarget()->DrawTextW(key.c_str(), static_cast<UINT32>(key.size()), D2DRender::GetIDWriteTextFormat(), rect2, D2DRender::GetID2D1SolidColorBrush());
+//}
+
+
+void DemoApp::ScoreCount()
 {
-	D2DRender::GetRenderTarget()->SetTransform(D2D1::Matrix3x2F::Identity());
-	D2D1_RECT_F rect1 = { 0,0, 100,100 };
-	std::wstring Vram = L"VRAM CHECK: " + std::to_wstring(D2DRender::GetUsedVRAM());
-	D2DRender::GetRenderTarget()->DrawTextW(Vram.c_str(), static_cast<UINT32>(Vram.size()), D2DRender::GetIDWriteTextFormat(), rect1, D2DRender::GetID2D1SolidColorBrush());
+	D2D1_RECT_F rect = { 480,10, 700,100 };
+	//std::wstring key = L" Score : " + std::to_wstring(VBall::count_p1);
+	std::wstring key = std::to_wstring(VBall::count_p2) + L" : " + std::to_wstring(VBall::count_p1);
 
-	D2D1_RECT_F rect2 = { 0,50, 150,300 };
-	std::wstring key = L"Create : C key, Release: R key, Reverse: <- key";
-	D2DRender::GetRenderTarget()->DrawTextW(key.c_str(), static_cast<UINT32>(key.size()), D2DRender::GetIDWriteTextFormat(), rect2, D2DRender::GetID2D1SolidColorBrush());
+	/*D2DRender::GetRenderTarget()->DrawTextW(
+		key.c_str(), static_cast<UINT32>(key.size()),
+		D2DRender::GetIDWriteTextFormat(),
+		rect,
+		D2DRender::GetID2D1SolidColorBrush());*/
 
-	rect2 = { 0,150, 250,400 };
-	key = L"Object count : " + std::to_wstring(tempWorld.count);
-	D2DRender::GetRenderTarget()->DrawTextW(key.c_str(), static_cast<UINT32>(key.size()), D2DRender::GetIDWriteTextFormat(), rect2, D2DRender::GetID2D1SolidColorBrush());
+	ID2D1SolidColorBrush* outlineBrush = nullptr;
+	ID2D1SolidColorBrush* textBrush = nullptr;
+
+	D2DRender::GetRenderTarget()->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Black, 1.0f), &outlineBrush);
+	D2DRender::GetRenderTarget()->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::DarkOrange, 1.0f), &textBrush);
+
+	D2DRender::GetRenderTarget()->DrawTextW
+	(
+		key.c_str(),
+		static_cast<UINT32>(key.size()),
+		D2DRender::GetIDWriteTextFormat(),
+		rect,
+		outlineBrush, // 외곽선 브러시
+		D2D1_DRAW_TEXT_OPTIONS_NONE,
+		DWRITE_MEASURING_MODE_NATURAL
+	);
+
+	D2DRender::GetRenderTarget()->DrawTextW
+	(
+		key.c_str(),
+		static_cast<UINT32>(key.size()),
+		D2DRender::GetIDWriteTextFormat(),
+		rect,
+		textBrush, // 텍스트 브러시
+		D2D1_DRAW_TEXT_OPTIONS_NONE,
+		DWRITE_MEASURING_MODE_NATURAL
+	);
+
 }
-
 
 void DemoApp::FixedUpdate()
 {
@@ -93,8 +136,9 @@ void DemoApp::Update()
 void DemoApp::Render()
 {
 	D2DRender::GetRenderTarget()->BeginDraw();
-	D2DRender::GetRenderTarget()->Clear(D2D1::ColorF(D2D1::ColorF::Black));
+	D2DRender::GetRenderTarget()->Clear(D2D1::ColorF(D2D1::ColorF::GreenYellow));
 	tempWorld.Render();
+	ScoreCount();
 	//PrintUsedVRAM();
 	D2DRender::GetRenderTarget()->EndDraw();
 }

@@ -11,7 +11,6 @@ public:
 	static SPlayer* p1;
 	static SPlayer* p2;
 	static Object* wall;
-
 };
 
 struct CustomInput

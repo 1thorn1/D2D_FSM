@@ -118,7 +118,7 @@ void AnimationScene::Render()
 		, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, m_SrcRect);
 
 	D2D1_RECT_F Rect = D2D1::RectF(0, 0, m_DstRect.right, m_DstRect.bottom);
-	D2DRender::GetRenderTarget()->DrawRectangle(&Rect, D2DRender::GetID2D1SolidColorBrush());
+	//D2DRender::GetRenderTarget()->DrawRectangle(&Rect, D2DRender::GetID2D1SolidColorBrush());
 
 	// 변환 초기화 무조건!!
 	D2DRender::GetRenderTarget()->SetTransform(D2D1::Matrix3x2F::Identity());

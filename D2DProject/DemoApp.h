@@ -13,7 +13,8 @@ public:
 	void Initialize(HINSTANCE hInstance);
 
 	void CheckKeyInput();
-	void PrintUsedVRAM();
+	//void PrintUsedVRAM();
+	void ScoreCount();
 
 	void FixedUpdate();
 	void Update();

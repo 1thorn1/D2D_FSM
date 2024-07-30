@@ -3,21 +3,22 @@
 
 void Jump::Initialize()
 {
-	gravityScale = 300.f;
-	jumpForce = 200.f;
-	velocity = 0.0f;
-	isJumping = false;
+	owner->SetGravityScale(600.f);
+	owner->SetJumpForce(300.f);
+	owner->SetPosition(0.0f);
+	bool isJumping = false;
 }
 
 void Jump::Enter()
 {
-	velocity = -1.5 * jumpForce;
+	owner->Setvelocity(-1.5 * owner->GetJumpForce());
 	isJumping = false;
 
 	AnimationScene* DRunAni;
 	DRunAni = m_pOwner->GetOwner()->GetComponent<AnimationScene>();
 	DRunAni->LoadAnimationAsset(L"CSV/Jump.txt");
 	DRunAni->SetAnimation(2, 0);
+	GameManager::p1->SPlayerAni->m_bMirror = true;
 }
 
 void Jump::Update()
@@ -31,19 +32,21 @@ void Jump::Update()
 	{
 		if (KeyManager.IsKeyDown(VK_RETURN))
 		{
-			fsm->SetCurState("PAttack"); // 중력을 계속 받아서 점프를 해야함 -> 수정 필요
+			fsm->SetCurState("PAttack");
 		}
 		if (KeyManager.IsKeyDown(owner->input.right))
 		{
-			fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x += 1 * speed * TimeManager::GetDeltaTime();
+			fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x += 0.1 * speed * TimeManager::GetDeltaTime();
 		}
 		if (KeyManager.IsKeyDown(owner->input.left))
 		{
-			fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x -= 1 * speed * TimeManager::GetDeltaTime();
+			fsm->GetOwner()->m_pRootScene->m_RelativeLocation.x -= 0.1 * speed * TimeManager::GetDeltaTime();
 		}
 	}
-	velocity += gravityScale * TimeManager::GetDeltaTime();
-	owner->m_pRootScene->m_RelativeLocation.y += velocity * TimeManager::GetDeltaTime(); // 이거 변수 만들어서 쓰는 거는 왜 안되지??
+
+	owner->Setvelocity(owner->Getvelocity() + owner->GetGravityScale() * TimeManager::GetDeltaTime());
+	owner->m_pRootScene->m_RelativeLocation.y += owner->Getvelocity() * TimeManager::GetDeltaTime();
+
 	if (owner->m_pRootScene->m_RelativeLocation.y >= 500)
 	{
 		owner->m_pRootScene->m_RelativeLocation.y = 500;

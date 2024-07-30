@@ -7,6 +7,8 @@ void Idle::Enter()
 	IdleAni = m_pOwner->GetOwner()->GetComponent<AnimationScene>();
 	IdleAni->LoadAnimationAsset(L"CSV/Idle.txt");
 	IdleAni->SetAnimation(3, 0);
+
+	GameManager::p1->SPlayerAni->m_bMirror = true;
 }
 
 void Idle::Update()
@@ -19,13 +21,13 @@ void Idle::Update()
 		fsm->SetCurState("DJump");
 
 	}
-	if (KeyManager.IsKeyHold(owner->input.left))
+	if (KeyManager.IsKeyDown(owner->input.left))
 	{
 		// 그냥 현재 애니메이션 재생, 앞으로 이동
 		fsm->SetCurState("SDRun");
 	}
 
-	if (KeyManager.IsKeyHold(owner->input.right))
+	if (KeyManager.IsKeyDown(owner->input.right))
 	{
 		// 그냥 현재 애니메이션 재생, 뒤으로 이동
 		fsm->SetCurState("SDRun");

@@ -17,6 +17,9 @@ public:
 	VBall();
 	virtual ~VBall();
 
+	static int count_p1;
+	static int count_p2;
+
 	bool CheckCollision(Vector2F& location, float radius);
 	void ResolveCollision(Vector2F& location, Vector2F& velocity, float radius);
 
