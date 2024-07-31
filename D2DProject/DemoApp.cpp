@@ -4,6 +4,7 @@
 #include "Background.h"
 #include "VBall.h"
 #include "GameManager.h"
+#include "TitleScene.h"
 
 Player* DemoApp::m_pPlayer = nullptr;
 
@@ -59,22 +60,6 @@ void DemoApp::CheckKeyInput()
 	//	tempWorld.mainCamera->m_pRootScene->m_RelativeLocation.x += 1;
 	//}
 }
-
-//void DemoApp::PrintUsedVRAM()
-//{
-//	D2DRender::GetRenderTarget()->SetTransform(D2D1::Matrix3x2F::Identity());
-//	D2D1_RECT_F rect1 = { 0,0, 100,100 };
-//	std::wstring Vram = L"VRAM CHECK: " + std::to_wstring(D2DRender::GetUsedVRAM());
-//	D2DRender::GetRenderTarget()->DrawTextW(Vram.c_str(), static_cast<UINT32>(Vram.size()), D2DRender::GetIDWriteTextFormat(), rect1, D2DRender::GetID2D1SolidColorBrush());
-//
-//	D2D1_RECT_F rect2 = { 0,50, 150,300 };
-//	std::wstring key = L"Create : C key, Release: R key, Reverse: <- key";
-//	D2DRender::GetRenderTarget()->DrawTextW(key.c_str(), static_cast<UINT32>(key.size()), D2DRender::GetIDWriteTextFormat(), rect2, D2DRender::GetID2D1SolidColorBrush());
-//
-//	D2D1_RECT_F rect2 = { 0,150, 250,400 };
-//	key = L"Object count : " + std::to_wstring(tempWorld.count);
-//	D2DRender::GetRenderTarget()->DrawTextW(key.c_str(), static_cast<UINT32>(key.size()), D2DRender::GetIDWriteTextFormat(), rect2, D2DRender::GetID2D1SolidColorBrush());
-//}
 
 
 void DemoApp::ScoreCount()
@@ -139,6 +124,5 @@ void DemoApp::Render()
 	D2DRender::GetRenderTarget()->Clear(D2D1::ColorF(D2D1::ColorF::GreenYellow));
 	tempWorld.Render();
 	ScoreCount();
-	//PrintUsedVRAM();
 	D2DRender::GetRenderTarget()->EndDraw();
 }

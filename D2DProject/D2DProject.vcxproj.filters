@@ -19,6 +19,9 @@
     <Filter Include="소스 파일\PlayersState">
       <UniqueIdentifier>{c1653ca7-35a6-4d27-9a5b-727480706690}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Scene">
+      <UniqueIdentifier>{98c4ca2e-95bc-4e10-9bb6-65fa63e9a5cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -54,16 +57,25 @@
     <ClInclude Include="Background.h">
       <Filter>소스 파일\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="VBall.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>소스 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScene.h">
+      <Filter>소스 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="VBall.h">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="SPlayer.h">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleBackground.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -92,16 +104,25 @@
     <ClCompile Include="Background.cpp">
       <Filter>소스 파일\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="VBall.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScene.cpp">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="SPlayer.cpp">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="VBall.cpp">
+      <Filter>소스 파일\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBackground.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

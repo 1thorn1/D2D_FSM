@@ -7,6 +7,7 @@ AnimationScene* VBall::m_Ball = nullptr;
 int VBall::count_p1 = 0;
 int VBall::count_p2 = 0;
 
+
 VBall::VBall()
 {
 	m_Ball = CreateComponent<AnimationScene>();
@@ -14,7 +15,7 @@ VBall::VBall()
 	ResourceManager::pInstance->CreateAnimationAsset(L"CSV/DBall.txt", &m_Ball->m_pAnimationAsset);
 	SetRootScene(m_Ball);
 	m_Ball->SetAnimation(5, 0);
-	m_Ball->m_RelativeLocation = { 512 + 200, 600 - 200 };
+	m_Ball->m_RelativeLocation = { 512 + 200, 350 };
 	m_Ball->m_RelativeScale = { 1.8f,1.8f };
 
 	position = 0.0f;
@@ -120,19 +121,30 @@ void VBall::Update()
 	if (m_Ball->m_RelativeLocation.y >= 500 - m_Ball->m_DstRect.bottom * 0.5)
 	{
 		m_Ball->m_RelativeLocation.y = 500 - m_Ball->m_DstRect.bottom * 0.5;
-		vb_velocity.y *= -0.5f;
+		vb_velocity.y = 0.f;
 
-		//player 1 ½Â
-		if (m_Ball->m_RelativeLocation.x - m_Ball->m_DstRect.bottom * 0.5
-			<= GameManager::wall->m_Object->m_RelativeLocation.x + 9)
+		// 2ÃÊ µô·¹ÀÌ
+		static float delay;
+		delay += TimeManager::GetDeltaTime();
+		if (delay >= 1.0f)
 		{
-			count_p1++;
-		}
-		//player 2 ½Â
-		if (m_Ball->m_RelativeLocation.x + m_Ball->m_DstRect.bottom * 0.5
-			>= GameManager::wall->m_Object->m_RelativeLocation.x - 9)
-		{
-			count_p2++;
+			// ¾îÀ¯¿À¾î¿À¿ä¤Å¾û¤·
+			int ¾ö = 1;
+			//player 1 ½Â
+			if (m_Ball->m_RelativeLocation.x - m_Ball->m_DstRect.bottom * 0.5
+				<= GameManager::wall->m_Object->m_RelativeLocation.x + 9)
+			{
+				count_p1++;
+				m_Ball->m_RelativeLocation = { 512 - 200, 350 };
+			}
+			//player 2 ½Â
+			if (m_Ball->m_RelativeLocation.x + m_Ball->m_DstRect.bottom * 0.5
+				>= GameManager::wall->m_Object->m_RelativeLocation.x - 9)
+			{
+				count_p2++;
+				m_Ball->m_RelativeLocation = { 512 + 200, 350 };
+			}
+			delay = 0.f;
 		}
 	}
 	// À§ÂÊ º®À» ¸ø³ª°¡°Ô ¸·¾ÆÁáÀ½
